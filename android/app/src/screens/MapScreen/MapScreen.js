@@ -10,8 +10,7 @@ import {FAB } from 'react-native-paper';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Geolocation from 'react-native-geolocation-service';
 import { request,PERMISSIONS } from 'react-native-permissions';
-
-
+import { createStackNavigator } from 'react-navigation';
 export default class Map extends Component {
 constructor(){
     super()
@@ -22,7 +21,7 @@ constructor(){
         change_places:null,
         my_place_id: [],
         my_images:[],
-        default_andy:null
+        default_andy:[]
     }
 }
 
@@ -74,7 +73,10 @@ Places(){
     .then((res)=>{
       //console.log(res)
       //Google Photos API set-up
-        this.state.default_andy = res.results;
+        
+        
+        
+
 
         for(let  i =1; i <6;i++){
         if(res.results[i].photos[0].photo_reference == null)
@@ -85,13 +87,10 @@ Places(){
         this.state.my_place_id[i] = res.results[i].photos[0].photo_reference;
         }
         }
-
-
-
-        console.log(this.state.my_place_id)
+        
         for(let i =1; i < 6;i++){
         this.state.my_images[i] = this.URL2(400,this.state.my_place_id[i],API_KEY)
-       
+        this.state.default_andy[i]= res.results[i];
         }
         //console.log(this.state.my_images)
         const Markers =[];
@@ -215,17 +214,40 @@ coordinate={{
                 style ={styles.Scrolling}
                 
                 >                  
-                
-            {this.state.my_images.map((imagez,index)=>
-               <View style={styles.card} key={index}>
+             {this.state.default_andy.map((random,syntax)=> 
+             <View key={syntax}>
+            
+               <View style={styles.card}>
                <Image
-                   source = {{uri:imagez}}
+                   source = {{uri:this.state.my_images[syntax].toString()}}
                    style ={styles.cardImage}
                    resizeMode="cover"
+                   //onPress={()=> }
                />
                
+                <View>
+                    <Text style={styles.texting}>Name:{random.name}</Text>
+                    <Text style={styles.texting}>Rating: {random.rating}</Text>
+                    <Text style={styles.texting}>Total user ratings: {random.user_ratings_total}</Text>
+                </View>
+
+                <View style={styles.button}>
+                <TouchableOpacity
+                onPress={()=> this.props.navigation.navigate('User')}
+                style = {[styles.signIn,{borderColor:'#FF6347',borderWidth:2}]}
+                >
+                    <Text style = {[styles.texting,{
+                        color:'#FF6347'
+                    }]}>Interested</Text>
+                </TouchableOpacity>
+               </View>
            </View>
-            )}
+           
+
+
+
+            </View>
+            )}  
             
             </ScrollView>
 
@@ -299,7 +321,7 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
         fontWeight:'bold',
         textAlign:'center',
-        textShadowColor:'#8B0000'
+        color:'#000000'
     },
     //Search Bar Styling
     searchBox: {
@@ -341,13 +363,13 @@ const styles = StyleSheet.create({
       card: {
         padding: 10,
         elevation: 2,
-        backgroundColor: "#FFF",
+        backgroundColor: "#D6D6E5",
         borderTopLeftRadius: 5,
         borderTopRightRadius: 5,
         marginHorizontal: 30,
-        shadowColor: "#000",
+        shadowColor: "#000000",
         shadowRadius: 5,
-        shadowOpacity: 0.3,
+        shadowOpacity: 1,
         overflow: "hidden",
       },
       cardImage: {
@@ -355,8 +377,20 @@ const styles = StyleSheet.create({
         width : 300,
         height:  100,
         alignSelf: "center",
+        borderColor:"#000000",
+        borderWidth: 2
       },
-
+      button: {
+        alignItems: 'center',
+        marginTop: 5
+      },
+      signIn: {
+        width: '100%',
+        padding:5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 3
+    },
 
 
 

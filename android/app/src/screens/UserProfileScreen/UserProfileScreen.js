@@ -23,7 +23,7 @@ const settingsPressed = () => {
 
 const friendPressed = () => {
     //Enables user upon button press to traverse to Create an account screen
-  navigation.navigate('Friend');
+  navigation.navigate('Edit');
   };
 
   const logoutPressed = () => {
