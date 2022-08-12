@@ -216,7 +216,7 @@ coordinate={{
            
           
                 >                  
-             {this.state.default_andy.map((random,syntax)=> 
+             {this.state.default_andy.map((places,syntax)=> 
              <View key={syntax}>
             
                <View style={styles.card}>
@@ -228,25 +228,25 @@ coordinate={{
                />
                
                 <View>
-                    <Text style={styles.texting}>Name:{random.name}</Text>
-                    <Text style={styles.texting}>Rating: {random.rating}</Text>
-                    <Text style={styles.texting}>Total user ratings: {random.user_ratings_total}</Text>
-                    <Text style={styles.texting}>{random.business_status}</Text>
-                    <Text>{random.price_level}</Text>
+                    <Text style={styles.texting}>Name:{places.name}</Text>
+                    <Text style={styles.texting}>Rating: {places.rating}</Text>
+                    <Text style={styles.texting}>Total user ratings: {places.user_ratings_total}</Text>
+                    <Text style={styles.texting}>{places.business_status}</Text>
+                  
                 </View>
 
                 <View style={styles.button}>
                 <TouchableOpacity
                 onPress={()=> {this.props.navigation.navigate('User')
-                this.state.place_location_lat=random.geometry.location.lat
-                this.state.place_location_long=random.geometry.location.lng
+                this.state.place_location_lat=places.geometry.location.lat
+                this.state.place_location_long=places.geometry.location.lng
                 //place_location stores variables for lat and long of the clicked location of interest
                 console.log(this.state.place_location_lat)
                 console.log(this.state.place_location_long)
              }
             }
                 
-                style = {[styles.signIn,{borderColor:'#FF6347',borderWidth:2}]}
+                style = {[styles.Button_Text,{borderColor:'#FF6347',borderWidth:2}]}
                 >
                     <Text style = {[styles.texting,{
                         color:'#FF6347'
@@ -367,23 +367,22 @@ const styles = StyleSheet.create({
         right: 0,
         paddingVertical: 10,
       },
+      //Styling for the fab button
       fab:{
         position:'absolute',
         right:0,
         bottom:0
       },
+      //Styling for the card
       card: {
-        padding: 10,
+        padding: 5,
         elevation: 2,
         backgroundColor: "#D6D6E5",
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
         marginHorizontal: 30,
         shadowColor: "#000000",
-        shadowRadius: 5,
-        shadowOpacity: 1,
         overflow: "hidden",
       },
+      //Styling for the image card itself
       cardImage: {
         flex: 1,
         width : 300,
@@ -396,9 +395,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 5
       },
-      signIn: {
-        width: '100%',
-        padding:5,
+      //Styling for button
+      Button_Text: {
+        width: '70%',
+        padding:4,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 3
