@@ -10,7 +10,6 @@ import {FAB } from 'react-native-paper';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Geolocation from 'react-native-geolocation-service';
 import { request,PERMISSIONS } from 'react-native-permissions';
-import { createStackNavigator } from 'react-navigation';
 export default class Map extends Component {
 constructor(){
     super()
@@ -21,7 +20,9 @@ constructor(){
         change_places:null,
         my_place_id: [],
         my_images:[],
-        default_andy:[]
+        default_andy:[],
+        place_location_lat:null,
+        place_location_long:null
     }
 }
 
@@ -212,7 +213,8 @@ coordinate={{
                 scrollEventThrottle={1}
                 showsHorizontalScrollIndicator={true}
                 style ={styles.Scrolling}
-                
+           
+          
                 >                  
              {this.state.default_andy.map((random,syntax)=> 
              <View key={syntax}>
@@ -229,11 +231,21 @@ coordinate={{
                     <Text style={styles.texting}>Name:{random.name}</Text>
                     <Text style={styles.texting}>Rating: {random.rating}</Text>
                     <Text style={styles.texting}>Total user ratings: {random.user_ratings_total}</Text>
+                    <Text style={styles.texting}>{random.business_status}</Text>
+                    <Text>{random.price_level}</Text>
                 </View>
 
                 <View style={styles.button}>
                 <TouchableOpacity
-                onPress={()=> this.props.navigation.navigate('User')}
+                onPress={()=> {this.props.navigation.navigate('User')
+                this.state.place_location_lat=random.geometry.location.lat
+                this.state.place_location_long=random.geometry.location.lng
+                //place_location stores variables for lat and long of the clicked location of interest
+                console.log(this.state.place_location_lat)
+                console.log(this.state.place_location_long)
+             }
+            }
+                
                 style = {[styles.signIn,{borderColor:'#FF6347',borderWidth:2}]}
                 >
                     <Text style = {[styles.texting,{
