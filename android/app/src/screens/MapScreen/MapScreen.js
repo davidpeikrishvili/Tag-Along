@@ -148,7 +148,10 @@ return(
         longitude: this.state.long,        
         latitudeDelta:0.03,
         longitudeDelta:0.04
-    }}>
+    }}
+    
+    >
+        
 <Marker 
 //Person Marker
 coordinate={{
@@ -213,18 +216,22 @@ coordinate={{
                 scrollEventThrottle={1}
                 showsHorizontalScrollIndicator={true}
                 style ={styles.Scrolling}
+                
            
           
                 >                  
              {this.state.default_andy.map((places,syntax)=> 
              <View key={syntax}>
             
-               <View style={styles.card}>
+               <View style={styles.card}
+               
+               >
                <Image
                    source = {{uri:this.state.my_images[syntax].toString()}}
                    style ={styles.cardImage}
                    resizeMode="cover"
-                   //onPress={()=> }
+                   
+                   
                />
                
                 <View>
@@ -255,7 +262,7 @@ coordinate={{
                </View>
            </View>
            
-
+            
 
 
             </View>
