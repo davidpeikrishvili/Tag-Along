@@ -1,59 +1,941 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, ScrollView, Alert,Pressable} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Alert,
+  Pressable,
+} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 
-
 export default function EditProfileScreen() {
-
   const [ambitiousTimesPressed, setambitiousTimesPressed] = useState(0);
-
+  const [marvelFanValue, setmarvelFanValue] = useState(0);
+  const [DCValue, setDCValue] = useState(0);
+  const [GamerValue, setGamerValue] = useState(0);
+  const [FoodieValue, setFoodieValue] = useState(0);
+  const [GymRatValue, setGymRatValue] = useState(0);
+  const [AnimeFanValue, setAnimeFanValue] = useState(0);
+  const [ArtLoverValue, setArtLoverValue] = useState(0);
+  const [FilmBuffValue, setFilmBuffValue] = useState(0);
+  const [HomebodyValue, setHomebodyValue] = useState(0);
+  const [NightOwlValue, setNightOwlValue] = useState(0);
+  const [CatPersonValue, setCatPersonValue] = useState(0);
+  const [DogPersonValue, setDogPersonValue] = useState(0);
+  const [EasyGoingValue, setEasyGoingValue] = useState(0);
+  const [BeatlesFanValue, setBeatlesFanValue] = useState(0);
+  const [ExtrovertedValue, setExtrovertedValue] = useState(0);
+  const [IntrovertedValue, setIntrovertedValue] = useState(0);
+  const [NatureLoverValue, setNatureLoverValue] = useState(0);
+  const [StarWarsFanValue, setStarWarsFanValue] = useState(0);
+  const [ThrillSeekerValue, setThrillSeekerValue] = useState(0);
+  const [BasketballFanValue, setBasketballFanValue] = useState(0);
+  const [MorningPersonValue, setMorningPersonValue] = useState(0);
+  const [CoffeeEnthusiastValue, setCoffeeEnthusiastValue] = useState(0);
+  const [ClassicalMusicFanValue, setClassicalMusicFanValue] = useState(0);
+  const [StrangerThingsFanValue, setStrangerThingsFanValue] = useState(0);
 
   //Here, the amount of times the interest button is pressed, is tracked
   let textLog = '';
-  if (ambitiousTimesPressed < 4 ) {
-    textLog = ambitiousTimesPressed + 'x interested';
+
+  if (ambitiousTimesPressed < 4) {
+    textLog = ambitiousTimesPressed + 'not interested';
   }
-  if (ambitiousTimesPressed == 1){
-   textLog = 'Somewhat Interested';
+  if (ambitiousTimesPressed == 1) {
+    textLog = 'Somewhat Interested';
+    console.log('ambitiousTimesPressed: ', textLog);
   }
-  if (ambitiousTimesPressed == 2){
-   textLog = ' Interested';
+  if (ambitiousTimesPressed == 2) {
+    textLog = ' Interested';
+    console.log('ambitiousTimesPressed: ', textLog);
   }
   if (ambitiousTimesPressed == 3) {
-   textLog = 'Very Interested';
-  }else if (ambitiousTimesPressed == 4){
-    ambitiousTimesPressed % 0;
+    textLog = 'Very Interested';
+    console.log('ambitiousTimesPressed: ', textLog);
+  } else if (ambitiousTimesPressed >= 4) {
+    if (ambitiousTimesPressed % 4 == 0) {
+      textLog = 'not interested';
+      console.log('ambitiousTimesPressed: ', textLog);
+    }
+    if (ambitiousTimesPressed % 4 == 1) {
+      textLog = 'Somewhat Interested';
+      console.log('ambitiousTimesPressed: ', textLog);
+    }
+    if (ambitiousTimesPressed % 4 == 2) {
+      textLog = 'Interested';
+      console.log('ambitiousTimesPressed: ', textLog);
+    }
+    if (ambitiousTimesPressed % 4 == 3) {
+      textLog = 'Very Interested';
+      console.log('ambitiousTimesPressed: ', textLog);
+    }
   }
 
+  let marvelLog = '';
 
-  
-  const [marvelValue, setMarvelValue] = useState(false);
-  const [DCValue, setDCValue] = useState(false);
-  const [GamerValue, setGamerValue] = useState(false);
-  const [FoodieValue, setFoodieValue] = useState(false);
-  const [GymRatValue, setGymRatValue] = useState(false);
-  const [AnimeFanValue, setAnimeFanValue] = useState(false);
-  const [ArtLoverValue, setArtLoverValue] = useState(false);
-  const [FilmBuffValue, setFilmBuffValue] = useState(false);
-  const [HomebodyValue, setHomebodyValue] = useState(false);
-  const [NightOwlValue, setNightOwlValue] = useState(false);
-  const [AmbitiousValue, setAmbitiousValue] = useState(false);
-  const [CatPersonValue, setCatPersonValue] = useState(false);
-  const [DogPersonValue, setDogPersonValue] = useState(false);
-  const [EasyGoingValue, setEasyGoingValue] = useState(false);
-  const [BeatlesFanValue, setBeatlesFanValue] = useState(false);
-  const [ExtrovertedValue, setExtrovertedValue] = useState(false);
-  const [IntrovertedValue, setIntrovertedValue] = useState(false);
-  const [NatureLoverValue, setNatureLoverValue] = useState(false);
-  const [StarWarsFanValue, setStarWarsFanValue] = useState(false);
-  const [ThrillSeekerValue, setThrillSeekerValue] = useState(false);
-  const [BasketballFanValue, setBasketballFanValue] = useState(false);
-  const [MorningPersonValue, setMorningPersonValue] = useState(false);
-  const [CoffeeEnthusiastValue, setCoffeeEnthusiastValue] = useState(false);
-  const [ClassicalMusicFanValue, setClassicalMusicFanValue] = useState(false);
-  const [StrangerThingsFanValue, setStrangerThingsFanValue] = useState(false);
+  if (marvelFanValue == 0) {
+    marvelLog = marvelFanValue + ' not interested';
+    console.log('marvelFanValue: ', marvelLog);
+  }
+  if (marvelFanValue == 1) {
+    marvelLog = 'Somewhat Interested';
+    console.log('marvelFanValue: ', marvelLog);
+  }
+  if (marvelFanValue == 2) {
+    marvelLog = ' Interested';
+    console.log('marvelFanValue: ', marvelLog);
+  }
+  if (marvelFanValue == 3) {
+    marvelLog = 'Very Interested';
+  } else if (marvelFanValue >= 4) {
+    if (marvelFanValue % 4 == 0) {
+      marvelLog = 'not interested';
+      console.log('marvelFanValue: ', marvelLog);
+    }
+    if (marvelFanValue % 4 == 1) {
+      marvelLog = 'Somewhat Interested';
+      console.log('marvelFanValue: ', marvelLog);
+    }
+    if (marvelFanValue % 4 == 2) {
+      marvelLog = 'Interested';
+      console.log('marvelFanValue: ', marvelLog);
+    }
+    if (marvelFanValue % 4 == 3) {
+      marvelLog = 'Very Interested';
+      console.log('marvelFanValue: ', marvelLog);
+    }
+  }
+
+  let DClog = '';
+
+  if (DCValue == 0) {
+    DClog = DCValue + ' not interested';
+    console.log('DCValue: ', DClog);
+  }
+  if (DCValue == 1) {
+    DClog = 'Somewhat Interested';
+    console.log('DCValue: ', DClog);
+  }
+  if (DCValue == 2) {
+    DClog = ' Interested';
+    console.log('DCValue: ', DClog);
+  }
+  if (DCValue == 3) {
+    DClog = 'Very Interested';
+    console.log('DCValue: ', DClog);
+  } else if (DCValue >= 4) {
+    if (DCValue % 4 == 0) {
+      DClog = 'not interested';
+      console.log('DCValue: ', DClog);
+    }
+    if (DCValue % 4 == 1) {
+      DClog = 'Somewhat Interested';
+      console.log('DCValue: ', DClog);
+    }
+    if (DCValue % 4 == 2) {
+      DClog = 'Interested';
+      console.log('DCValue: ', DClog);
+    }
+    if (DCValue % 4 == 3) {
+      DClog = 'Very Interested';
+      console.log('DCValue: ', DClog);
+    }
+  }
+
+  let Gamerlog = '';
+
+  if (GamerValue == 0) {
+    Gamerlog = GamerValue + ' not interested';
+    console.log('GamerValue: ', Gamerlog);
+  }
+  if (GamerValue == 1) {
+    Gamerlog = 'Somewhat Interested';
+    console.log('GamerValue: ', Gamerlog);
+  }
+  if (GamerValue == 2) {
+    Gamerlog = ' Interested';
+    console.log('GamerValue: ', Gamerlog);
+  }
+  if (GamerValue == 3) {
+    Gamerlog = 'Very Interested';
+    console.log('GamerValue: ', Gamerlog);
+  } else if (GamerValue >= 4) {
+    if (GamerValue % 4 == 0) {
+      Gamerlog = 'not interested';
+      console.log('GamerValue: ', Gamerlog);
+    }
+    if (GamerValue % 4 == 1) {
+      Gamerlog = 'Somewhat Interested';
+      console.log('GamerValue: ', Gamerlog);
+    }
+    if (GamerValue % 4 == 2) {
+      Gamerlog = 'Interested';
+      console.log('GamerValue: ', Gamerlog);
+    }
+    if (GamerValue % 4 == 3) {
+      Gamerlog = 'Very Interested';
+      console.log('GamerValue: ', Gamerlog);
+    }
+  }
+
+  let Foodielog = '';
+
+  if (FoodieValue == 0) {
+    Foodielog = FoodieValue + ' not interested';
+    console.log('FoodieValue: ', Foodielog);
+  }
+  if (FoodieValue == 1) {
+    Foodielog = 'Somewhat Interested';
+    console.log('FoodieValue: ', Foodielog);
+  }
+  if (FoodieValue == 2) {
+    Foodielog = ' Interested';
+    console.log('FoodieValue: ', Foodielog);
+  }
+  if (FoodieValue == 3) {
+    Foodielog = 'Very Interested';
+    console.log('FoodieValue: ', Foodielog);
+  } else if (FoodieValue >= 4) {
+    if (FoodieValue % 4 == 0) {
+      Foodielog = 'not interested';
+      console.log('FoodieValue: ', Foodielog);
+    }
+    if (FoodieValue % 4 == 1) {
+      Foodielog = 'Somewhat Interested';
+      console.log('FoodieValue: ', Foodielog);
+    }
+    if (FoodieValue % 4 == 2) {
+      Foodielog = 'Interested';
+      console.log('FoodieValue: ', Foodielog);
+    }
+    if (FoodieValue % 4 == 3) {
+      Foodielog = 'Very Interested';
+      console.log('FoodieValue: ', Foodielog);
+    }
+  }
+
+  let GymRatlog = '';
+
+  if (GymRatValue == 0) {
+    GymRatlog = GymRatValue + ' not interested';
+    console.log('GymRatValue: ', GymRatlog);
+  }
+  if (GymRatValue == 1) {
+    GymRatlog = 'Somewhat Interested';
+    console.log('GymRatValue: ', GymRatlog);
+  }
+  if (GymRatValue == 2) {
+    GymRatlog = ' Interested';
+    console.log('GymRatValue: ', GymRatlog);
+  }
+  if (GymRatValue == 3) {
+    GymRatlog = 'Very Interested';
+    console.log('GymRatValue: ', GymRatlog);
+  } else if (GymRatValue >= 4) {
+    if (GymRatValue % 4 == 0) {
+      GymRatlog = 'not interested';
+      console.log('GymRatValue: ', GymRatlog);
+    }
+    if (GymRatValue % 4 == 1) {
+      GymRatlog = 'Somewhat Interested';
+      console.log('GymRatValue: ', GymRatlog);
+    }
+    if (GymRatValue % 4 == 2) {
+      GymRatlog = 'Interested';
+      console.log('GymRatValue: ', GymRatlog);
+    }
+    if (GymRatValue % 4 == 3) {
+      GymRatlog = 'Very Interested';
+      console.log('GymRatValue: ', GymRatlog);
+    }
+  }
+
+  let AnimeFanlog = '';
+
+  if (AnimeFanValue == 0) {
+    AnimeFanlog = AnimeFanValue + ' not interested';
+    console.log('AnimeFanValue: ', AnimeFanlog);
+  }
+  if (AnimeFanValue == 1) {
+    AnimeFanlog = 'Somewhat Interested';
+    console.log('AnimeFanValue: ', AnimeFanlog);
+  }
+  if (AnimeFanValue == 2) {
+    AnimeFanlog = ' Interested';
+    console.log('AnimeFanValue: ', AnimeFanlog);
+  }
+  if (AnimeFanValue == 3) {
+    AnimeFanlog = 'Very Interested';
+    console.log('AnimeFanValue: ', AnimeFanlog);
+  } else if (AnimeFanValue >= 4) {
+    if (AnimeFanValue % 4 == 0) {
+      AnimeFanlog = 'not interested';
+      console.log('AnimeFanValue: ', AnimeFanlog);
+    }
+    if (AnimeFanValue % 4 == 1) {
+      AnimeFanlog = 'Somewhat Interested';
+      console.log('AnimeFanValue: ', AnimeFanlog);
+    }
+    if (AnimeFanValue % 4 == 2) {
+      AnimeFanlog = 'Interested';
+      console.log('AnimeFanValue: ', AnimeFanlog);
+    }
+    if (AnimeFanValue % 4 == 3) {
+      AnimeFanlog = 'Very Interested';
+      console.log('AnimeFanValue: ', AnimeFanlog);
+    }
+  }
+
+  let ArtLoverlog = '';
+
+  if (ArtLoverValue == 0) {
+    ArtLoverlog = ArtLoverValue + ' not interested';
+    console.log('ArtLoverValue: ', ArtLoverlog);
+  }
+  if (ArtLoverValue == 1) {
+    ArtLoverlog = 'Somewhat Interested';
+    console.log('ArtLoverValue: ', ArtLoverlog);
+  }
+  if (ArtLoverValue == 2) {
+    ArtLoverlog = ' Interested';
+    console.log('ArtLoverValue: ', ArtLoverlog);
+  }
+  if (ArtLoverValue == 3) {
+    ArtLoverlog = 'Very Interested';
+    console.log('ArtLoverValue: ', ArtLoverlog);
+  } else if (ArtLoverValue >= 4) {
+    if (ArtLoverValue % 4 == 0) {
+      ArtLoverlog = 'not interested';
+      console.log('ArtLoverValue: ', ArtLoverlog);
+    }
+    if (ArtLoverValue % 4 == 1) {
+      ArtLoverlog = 'Somewhat Interested';
+      console.log('ArtLoverValue: ', ArtLoverlog);
+    }
+    if (ArtLoverValue % 4 == 2) {
+      ArtLoverlog = 'Interested';
+      console.log('ArtLoverValue: ', ArtLoverlog);
+    }
+    if (ArtLoverValue % 4 == 3) {
+      ArtLoverlog = 'Very Interested';
+      console.log('ArtLoverValue: ', ArtLoverlog);
+    }
+  }
+
+  let FilmBufflog = '';
+
+  if (FilmBuffValue == 0) {
+    FilmBufflog = FilmBuffValue + ' not interested';
+    console.log('FilmBuffValue: ', FilmBufflog);
+  }
+  if (FilmBuffValue == 1) {
+    FilmBufflog = 'Somewhat Interested';
+    console.log('FilmBuffValue: ', FilmBufflog);
+  }
+  if (FilmBuffValue == 2) {
+    FilmBufflog = ' Interested';
+    console.log('FilmBuffValue: ', FilmBufflog);
+  }
+  if (FilmBuffValue == 3) {
+    FilmBufflog = 'Very Interested';
+    console.log('FilmBuffValue: ', FilmBufflog);
+  } else if (FilmBuffValue >= 4) {
+    if (FilmBuffValue % 4 == 0) {
+      FilmBufflog = 'not interested';
+      console.log('FilmBuffValue: ', FilmBufflog);
+    }
+    if (FilmBuffValue % 4 == 1) {
+      FilmBufflog = 'Somewhat Interested';
+      console.log('FilmBuffValue: ', FilmBufflog);
+    }
+    if (FilmBuffValue % 4 == 2) {
+      FilmBufflog = 'Interested';
+      console.log('FilmBuffValue: ', FilmBufflog);
+    }
+    if (FilmBuffValue % 4 == 3) {
+      FilmBufflog = 'Very Interested';
+      console.log('FilmBuffValue: ', FilmBufflog);
+    }
+  }
+
+  let Homebodylog = '';
+
+  if (HomebodyValue == 0) {
+    Homebodylog = HomebodyValue + ' not interested';
+    console.log('HomebodyValue: ', Homebodylog);
+  }
+  if (HomebodyValue == 1) {
+    Homebodylog = 'Somewhat Interested';
+    console.log('HomebodyValue: ', Homebodylog);
+  }
+  if (HomebodyValue == 2) {
+    Homebodylog = ' Interested';
+    console.log('HomebodyValue: ', Homebodylog);
+  }
+  if (HomebodyValue == 3) {
+    Homebodylog = 'Very Interested';
+    console.log('HomebodyValue: ', Homebodylog);
+  } else if (HomebodyValue >= 4) {
+    if (HomebodyValue % 4 == 0) {
+      Homebodylog = 'not interested';
+      console.log('HomebodyValue: ', Homebodylog);
+    }
+    if (HomebodyValue % 4 == 1) {
+      Homebodylog = 'Somewhat Interested';
+      console.log('HomebodyValue: ', Homebodylog);
+    }
+    if (HomebodyValue % 4 == 2) {
+      Homebodylog = 'Interested';
+      console.log('HomebodyValue: ', Homebodylog);
+    }
+    if (HomebodyValue % 4 == 3) {
+      Homebodylog = 'Very Interested';
+      console.log('HomebodyValue: ', Homebodylog);
+    }
+  }
+
+  let NightOwllog = '';
+
+  if (NightOwlValue == 0) {
+    NightOwllog = NightOwlValue + ' not interested';
+    console.log('NightOwlValue: ', NightOwllog);
+  }
+  if (NightOwlValue == 1) {
+    NightOwllog = 'Somewhat Interested';
+    console.log('NightOwlValue: ', NightOwllog);
+  }
+  if (NightOwlValue == 2) {
+    NightOwllog = ' Interested';
+    console.log('NightOwlValue: ', NightOwllog);
+  }
+  if (NightOwlValue == 3) {
+    NightOwllog = 'Very Interested';
+    console.log('NightOwlValue: ', NightOwllog);
+  } else if (NightOwlValue >= 4) {
+    if (NightOwlValue % 4 == 0) {
+      NightOwllog = 'not interested';
+      console.log('NightOwlValue: ', NightOwllog);
+    }
+    if (NightOwlValue % 4 == 1) {
+      NightOwllog = 'Somewhat Interested';
+      console.log('NightOwlValue: ', NightOwllog);
+    }
+    if (NightOwlValue % 4 == 2) {
+      NightOwllog = 'Interested';
+      console.log('NightOwlValue: ', NightOwllog);
+    }
+    if (NightOwlValue % 4 == 3) {
+      NightOwllog = 'Very Interested';
+      console.log('NightOwlValue: ', NightOwllog);
+    }
+  }
+
+  let CatPersonlog = '';
+
+  if (CatPersonValue == 0) {
+    CatPersonlog = CatPersonValue + ' not interested';
+    console.log('CatPersonValue: ', CatPersonlog);
+  }
+  if (CatPersonValue == 1) {
+    CatPersonlog = 'Somewhat Interested';
+    console.log('CatPersonValue: ', CatPersonlog);
+  }
+  if (CatPersonValue == 2) {
+    CatPersonlog = ' Interested';
+    console.log('CatPersonValue: ', CatPersonlog);
+  }
+  if (CatPersonValue == 3) {
+    CatPersonlog = 'Very Interested';
+    console.log('CatPersonValue: ', CatPersonlog);
+  } else if (CatPersonValue >= 4) {
+    if (CatPersonValue % 4 == 0) {
+      CatPersonlog = 'not interested';
+      console.log('CatPersonValue: ', CatPersonlog);
+    }
+    if (CatPersonValue % 4 == 1) {
+      CatPersonlog = 'Somewhat Interested';
+      console.log('CatPersonValue: ', CatPersonlog);
+    }
+    if (CatPersonValue % 4 == 2) {
+      CatPersonlog = 'Interested';
+      console.log('CatPersonValue: ', CatPersonlog);
+    }
+    if (CatPersonValue % 4 == 3) {
+      CatPersonlog = 'Very Interested';
+      console.log('CatPersonValue: ', CatPersonlog);
+    }
+  }
+
+  let DogPersonlog = '';
+
+  if (DogPersonValue == 0) {
+    DogPersonlog = DogPersonValue + ' not interested';
+    console.log('DogPersonValue: ', DogPersonlog);
+  }
+  if (DogPersonValue == 1) {
+    DogPersonlog = 'Somewhat Interested';
+    console.log('DogPersonValue: ', DogPersonlog);
+  }
+  if (DogPersonValue == 2) {
+    DogPersonlog = ' Interested';
+    console.log('DogPersonValue: ', DogPersonlog);
+  }
+  if (DogPersonValue == 3) {
+    DogPersonlog = 'Very Interested';
+    console.log('DogPersonValue: ', DogPersonlog);
+  } else if (DogPersonValue >= 4) {
+    if (DogPersonValue % 4 == 0) {
+      DogPersonlog = 'not interested';
+      console.log('DogPersonValue: ', DogPersonlog);
+    }
+    if (DogPersonValue % 4 == 1) {
+      DogPersonlog = 'Somewhat Interested';
+      console.log('DogPersonValue: ', DogPersonlog);
+    }
+    if (DogPersonValue % 4 == 2) {
+      DogPersonlog = 'Interested';
+      console.log('DogPersonValue: ', DogPersonlog);
+    }
+    if (DogPersonValue % 4 == 3) {
+      DogPersonlog = 'Very Interested';
+      console.log('DogPersonValue: ', DogPersonlog);
+    }
+  }
+
+  let EasyGoinglog = '';
+
+  if (EasyGoingValue == 0) {
+    EasyGoinglog = EasyGoingValue + ' not interested';
+    console.log('EasyGoingValue: ', EasyGoinglog);
+  }
+  if (EasyGoingValue == 1) {
+    EasyGoinglog = 'Somewhat Interested';
+    console.log('EasyGoingValue: ', EasyGoinglog);
+  }
+  if (EasyGoingValue == 2) {
+    EasyGoinglog = ' Interested';
+    console.log('EasyGoingValue: ', EasyGoinglog);
+  }
+  if (EasyGoingValue == 3) {
+    EasyGoinglog = 'Very Interested';
+    console.log('EasyGoingValue: ', EasyGoinglog);
+  } else if (EasyGoingValue >= 4) {
+    if (EasyGoingValue % 4 == 0) {
+      EasyGoinglog = 'not interested';
+      console.log('EasyGoingValue: ', EasyGoinglog);
+    }
+    if (EasyGoingValue % 4 == 1) {
+      EasyGoinglog = 'Somewhat Interested';
+      console.log('EasyGoingValue: ', EasyGoinglog);
+    }
+    if (EasyGoingValue % 4 == 2) {
+      EasyGoinglog = 'Interested';
+      console.log('EasyGoingValue: ', EasyGoinglog);
+    }
+    if (EasyGoingValue % 4 == 3) {
+      EasyGoinglog = 'Very Interested';
+      console.log('EasyGoingValue: ', EasyGoinglog);
+    }
+  }
+
+  let BeatlesFanlog = '';
+
+  if (BeatlesFanValue == 0) {
+    BeatlesFanlog = BeatlesFanValue + ' not interested';
+    console.log('BeatlesFanValue: ', BeatlesFanlog);
+  }
+  if (BeatlesFanValue == 1) {
+    BeatlesFanlog = 'Somewhat Interested';
+    console.log('BeatlesFanValue: ', BeatlesFanlog);
+  }
+  if (BeatlesFanValue == 2) {
+    BeatlesFanlog = ' Interested';
+    console.log('BeatlesFanValue: ', BeatlesFanlog);
+  }
+  if (BeatlesFanValue == 3) {
+    BeatlesFanlog = 'Very Interested';
+    console.log('BeatlesFanValue: ', BeatlesFanlog);
+  } else if (BeatlesFanValue >= 4) {
+    if (BeatlesFanValue % 4 == 0) {
+      BeatlesFanlog = 'not interested';
+      console.log('BeatlesFanValue: ', BeatlesFanlog);
+    }
+    if (BeatlesFanValue % 4 == 1) {
+      BeatlesFanlog = 'Somewhat Interested';
+      console.log('BeatlesFanValue: ', BeatlesFanlog);
+    }
+    if (BeatlesFanValue % 4 == 2) {
+      BeatlesFanlog = 'Interested';
+      console.log('BeatlesFanValue: ', BeatlesFanlog);
+    }
+    if (BeatlesFanValue % 4 == 3) {
+      BeatlesFanlog = 'Very Interested';
+      console.log('BeatlesFanValue: ', BeatlesFanlog);
+    }
+  }
+
+  let Extrovertedlog = '';
+
+  if (ExtrovertedValue == 0) {
+    Extrovertedlog = ExtrovertedValue + ' not interested';
+    console.log('ExtrovertedValue: ', Extrovertedlog);
+  }
+  if (ExtrovertedValue == 1) {
+    Extrovertedlog = 'Somewhat Interested';
+    console.log('ExtrovertedValue: ', Extrovertedlog);
+  }
+  if (ExtrovertedValue == 2) {
+    Extrovertedlog = ' Interested';
+    console.log('ExtrovertedValue: ', Extrovertedlog);
+  }
+  if (ExtrovertedValue == 3) {
+    Extrovertedlog = 'Very Interested';
+    console.log('ExtrovertedValue: ', Extrovertedlog);
+  } else if (ExtrovertedValue >= 4) {
+    if (ExtrovertedValue % 4 == 0) {
+      Extrovertedlog = 'not interested';
+      console.log('ExtrovertedValue: ', Extrovertedlog);
+    }
+    if (ExtrovertedValue % 4 == 1) {
+      Extrovertedlog = 'Somewhat Interested';
+      console.log('ExtrovertedValue: ', Extrovertedlog);
+    }
+    if (ExtrovertedValue % 4 == 2) {
+      Extrovertedlog = 'Interested';
+      console.log('ExtrovertedValue: ', Extrovertedlog);
+    }
+    if (ExtrovertedValue % 4 == 3) {
+      Extrovertedlog = 'Very Interested';
+      console.log('ExtrovertedValue: ', Extrovertedlog);
+    }
+  }
+
+  let Introvertedlog = '';
+
+  if (IntrovertedValue == 0) {
+    Introvertedlog = IntrovertedValue + ' not interested';
+    console.log('IntrovertedValue: ', Introvertedlog);
+  }
+  if (IntrovertedValue == 1) {
+    Introvertedlog = 'Somewhat Interested';
+    console.log('IntrovertedValue: ', Introvertedlog);
+  }
+  if (IntrovertedValue == 2) {
+    Introvertedlog = ' Interested';
+    console.log('IntrovertedValue: ', Introvertedlog);
+  }
+  if (IntrovertedValue == 3) {
+    Introvertedlog = 'Very Interested';
+    console.log('IntrovertedValue: ', Introvertedlog);
+  } else if (IntrovertedValue >= 4) {
+    if (IntrovertedValue % 4 == 0) {
+      Introvertedlog = 'not interested';
+      console.log('IntrovertedValue: ', Introvertedlog);
+    }
+    if (IntrovertedValue % 4 == 1) {
+      Introvertedlog = 'Somewhat Interested';
+      console.log('IntrovertedValue: ', Introvertedlog);
+    }
+    if (IntrovertedValue % 4 == 2) {
+      Introvertedlog = 'Interested';
+      console.log('IntrovertedValue: ', Introvertedlog);
+    }
+    if (IntrovertedValue % 4 == 3) {
+      Introvertedlog = 'Very Interested';
+      console.log('IntrovertedValue: ', Introvertedlog);
+    }
+  }
+
+  let NatureLoverlog = '';
+
+  if (NatureLoverValue == 0) {
+    NatureLoverlog = NatureLoverValue + ' not interested';
+    console.log('NatureLoverValue: ', NatureLoverlog);
+  }
+  if (NatureLoverValue == 1) {
+    NatureLoverlog = 'Somewhat Interested';
+    console.log('NatureLoverValue: ', NatureLoverlog);
+  }
+  if (NatureLoverValue == 2) {
+    NatureLoverlog = ' Interested';
+    console.log('NatureLoverValue: ', NatureLoverlog);
+  }
+  if (NatureLoverValue == 3) {
+    NatureLoverlog = 'Very Interested';
+    console.log('NatureLoverValue: ', NatureLoverlog);
+  } else if (NatureLoverValue >= 4) {
+    if (NatureLoverValue % 4 == 0) {
+      NatureLoverlog = 'not interested';
+      console.log('NatureLoverValue: ', NatureLoverlog);
+    }
+    if (NatureLoverValue % 4 == 1) {
+      NatureLoverlog = 'Somewhat Interested';
+      console.log('NatureLoverValue: ', NatureLoverlog);
+    }
+    if (NatureLoverValue % 4 == 2) {
+      NatureLoverlog = 'Interested';
+      console.log('NatureLoverValue: ', NatureLoverlog);
+    }
+    if (NatureLoverValue % 4 == 3) {
+      NatureLoverlog = 'Very Interested';
+      console.log('NatureLoverValue: ', NatureLoverlog);
+    }
+  }
+
+  let StarWarsFanlog = '';
+
+  if (StarWarsFanValue == 0) {
+    StarWarsFanlog = StarWarsFanValue + ' not interested';
+    console.log('StarWarsFanValue: ', StarWarsFanlog);
+  }
+  if (StarWarsFanValue == 1) {
+    StarWarsFanlog = 'Somewhat Interested';
+    console.log('StarWarsFanValue: ', StarWarsFanlog);
+  }
+  if (StarWarsFanValue == 2) {
+    StarWarsFanlog = ' Interested';
+    console.log('StarWarsFanValue: ', StarWarsFanlog);
+  }
+  if (StarWarsFanValue == 3) {
+    StarWarsFanlog = 'Very Interested';
+    console.log('StarWarsFanValue: ', StarWarsFanlog);
+  } else if (StarWarsFanValue >= 4) {
+    if (StarWarsFanValue % 4 == 0) {
+      StarWarsFanlog = 'not interested';
+      console.log('StarWarsFanValue: ', StarWarsFanlog);
+    }
+    if (StarWarsFanValue % 4 == 1) {
+      StarWarsFanlog = 'Somewhat Interested';
+      console.log('StarWarsFanValue: ', StarWarsFanlog);
+    }
+    if (StarWarsFanValue % 4 == 2) {
+      StarWarsFanlog = 'Interested';
+      console.log('StarWarsFanValue: ', StarWarsFanlog);
+    }
+    if (StarWarsFanValue % 4 == 3) {
+      StarWarsFanlog = 'Very Interested';
+      console.log('StarWarsFanValue: ', StarWarsFanlog);
+    }
+  }
+
+  let ThrillSeekerlog = '';
+
+  if (ThrillSeekerValue == 0) {
+    ThrillSeekerlog = ThrillSeekerValue + ' not interested';
+    console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+  }
+  if (ThrillSeekerValue == 1) {
+    ThrillSeekerlog = 'Somewhat Interested';
+    console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+  }
+  if (ThrillSeekerValue == 2) {
+    ThrillSeekerlog = ' Interested';
+    console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+  }
+  if (ThrillSeekerValue == 3) {
+    ThrillSeekerlog = 'Very Interested';
+    console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+  } else if (ThrillSeekerValue >= 4) {
+    if (ThrillSeekerValue % 4 == 0) {
+      ThrillSeekerlog = 'not interested';
+      console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+    }
+    if (ThrillSeekerValue % 4 == 1) {
+      ThrillSeekerlog = 'Somewhat Interested';
+      console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+    }
+    if (ThrillSeekerValue % 4 == 2) {
+      ThrillSeekerlog = 'Interested';
+      console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+    }
+    if (ThrillSeekerValue % 4 == 3) {
+      ThrillSeekerlog = 'Very Interested';
+      console.log('ThrillSeekerValue: ', ThrillSeekerlog);
+    }
+  }
+
+  let BasketballFanlog = '';
+
+  if (BasketballFanValue == 0) {
+    BasketballFanlog = BasketballFanValue + ' not interested';
+    console.log('BasketballFanValue: ', BasketballFanlog);
+  }
+  if (BasketballFanValue == 1) {
+    BasketballFanlog = 'Somewhat Interested';
+    console.log('BasketballFanValue: ', BasketballFanlog);
+  }
+  if (BasketballFanValue == 2) {
+    BasketballFanlog = ' Interested';
+    console.log('BasketballFanValue: ', BasketballFanlog);
+  }
+  if (BasketballFanValue == 3) {
+    BasketballFanlog = 'Very Interested';
+    console.log('BasketballFanValue: ', BasketballFanlog);
+  } else if (BasketballFanValue >= 4) {
+    if (BasketballFanValue % 4 == 0) {
+      BasketballFanlog = 'not interested';
+      console.log('BasketballFanValue: ', BasketballFanlog);
+    }
+    if (BasketballFanValue % 4 == 1) {
+      BasketballFanlog = 'Somewhat Interested';
+      console.log('BasketballFanValue: ', BasketballFanlog);
+    }
+    if (BasketballFanValue % 4 == 2) {
+      BasketballFanlog = 'Interested';
+      console.log('BasketballFanValue: ', BasketballFanlog);
+    }
+    if (BasketballFanValue % 4 == 3) {
+      BasketballFanlog = 'Very Interested';
+      console.log('BasketballFanValue: ', BasketballFanlog);
+    }
+  }
+
+  let MorningPersonlog = '';
+
+  if (MorningPersonValue == 0) {
+    MorningPersonlog = MorningPersonValue + ' not interested';
+    console.log('MorningPersonValue: ', MorningPersonlog);
+  }
+  if (MorningPersonValue == 1) {
+    MorningPersonlog = 'Somewhat Interested';
+    console.log('MorningPersonValue: ', MorningPersonlog);
+  }
+  if (MorningPersonValue == 2) {
+    MorningPersonlog = ' Interested';
+    console.log('MorningPersonValue: ', MorningPersonlog);
+  }
+  if (MorningPersonValue == 3) {
+    MorningPersonlog = 'Very Interested';
+    console.log('MorningPersonValue: ', MorningPersonlog);
+  } else if (MorningPersonValue >= 4) {
+    if (MorningPersonValue % 4 == 0) {
+      MorningPersonlog = 'not interested';
+      console.log('MorningPersonValue: ', MorningPersonlog);
+    }
+    if (MorningPersonValue % 4 == 1) {
+      MorningPersonlog = 'Somewhat Interested';
+      console.log('MorningPersonValue: ', MorningPersonlog);
+    }
+    if (MorningPersonValue % 4 == 2) {
+      MorningPersonlog = 'Interested';
+      console.log('MorningPersonValue: ', MorningPersonlog);
+    }
+    if (MorningPersonValue % 4 == 3) {
+      MorningPersonlog = 'Very Interested';
+      console.log('MorningPersonValue: ', MorningPersonlog);
+    }
+  }
+
+  let CoffeeEnthusiastlog = '';
+
+  if (CoffeeEnthusiastValue == 0) {
+    CoffeeEnthusiastlog = CoffeeEnthusiastValue + ' not interested';
+    console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+  }
+  if (CoffeeEnthusiastValue == 1) {
+    CoffeeEnthusiastlog = 'Somewhat Interested';
+    console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+  }
+  if (CoffeeEnthusiastValue == 2) {
+    CoffeeEnthusiastlog = ' Interested';
+    console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+  }
+  if (CoffeeEnthusiastValue == 3) {
+    CoffeeEnthusiastlog = 'Very Interested';
+    console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+  } else if (CoffeeEnthusiastValue >= 4) {
+    if (CoffeeEnthusiastValue % 4 == 0) {
+      CoffeeEnthusiastlog = 'not interested';
+      console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+    }
+    if (CoffeeEnthusiastValue % 4 == 1) {
+      CoffeeEnthusiastlog = 'Somewhat Interested';
+      console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+    }
+    if (CoffeeEnthusiastValue % 4 == 2) {
+      CoffeeEnthusiastlog = 'Interested';
+      console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+    }
+    if (CoffeeEnthusiastValue % 4 == 3) {
+      CoffeeEnthusiastlog = 'Very Interested';
+      console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
+    }
+  }
+
+  let ClassicalMusicFanlog = '';
+
+  if (ClassicalMusicFanValue == 0) {
+    ClassicalMusicFanlog = ClassicalMusicFanValue + ' not interested';
+    console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+  }
+  if (ClassicalMusicFanValue == 1) {
+    ClassicalMusicFanlog = 'Somewhat Interested';
+    console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+  }
+  if (ClassicalMusicFanValue == 2) {
+    ClassicalMusicFanlog = ' Interested';
+    console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+  }
+  if (ClassicalMusicFanValue == 3) {
+    ClassicalMusicFanlog = 'Very Interested';
+    console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+  } else if (ClassicalMusicFanValue >= 4) {
+    if (ClassicalMusicFanValue % 4 == 0) {
+      ClassicalMusicFanlog = 'not interested';
+      console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+    }
+    if (ClassicalMusicFanValue % 4 == 1) {
+      ClassicalMusicFanlog = 'Somewhat Interested';
+      console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+    }
+    if (ClassicalMusicFanValue % 4 == 2) {
+      ClassicalMusicFanlog = 'Interested';
+      console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+    }
+    if (ClassicalMusicFanValue % 4 == 3) {
+      ClassicalMusicFanlog = 'Very Interested';
+      console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
+    }
+  }
+
+  let StrangerThingsFanlog = '';
+
+  if (StrangerThingsFanValue == 0) {
+    StrangerThingsFanlog = StrangerThingsFanValue + ' not interested';
+    console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+  }
+  if (StrangerThingsFanValue == 1) {
+    StrangerThingsFanlog = 'Somewhat Interested';
+    console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+  }
+  if (StrangerThingsFanValue == 2) {
+    StrangerThingsFanlog = ' Interested';
+    console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+  }
+  if (StrangerThingsFanValue == 3) {
+    StrangerThingsFanlog = 'Very Interested';
+    console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+  } else if (StrangerThingsFanValue >= 4) {
+    if (StrangerThingsFanValue % 4 == 0) {
+      StrangerThingsFanlog = 'not interested';
+      console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+    }
+    if (StrangerThingsFanValue % 4 == 1) {
+      StrangerThingsFanlog = 'Somewhat Interested';
+      console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+    }
+    if (StrangerThingsFanValue % 4 == 2) {
+      StrangerThingsFanlog = 'Interested';
+      console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+    }
+    if (StrangerThingsFanValue % 4 == 3) {
+      StrangerThingsFanlog = 'Very Interested';
+      console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
+    }
+  }
 
   const navigation = useNavigation();
 
@@ -61,361 +943,69 @@ export default function EditProfileScreen() {
     navigation.navigate('User');
   };
 
-  //handleChange function to store checkbox values
-  //I split the values in groups of 4 so you can navigater easier.
-  const handleChange = data => {
-    if (data == 'marvelValue') {
-      if (marvelValue == true) {
-        console.log(data);
-      }
-      setMarvelValue(!marvelValue);
-    }
-    if (data == 'DCValue') {
-      if (DCValue == true) {
-        console.log(data);
-      }
-      setDCValue(!DCValue);
-    }
-    if (data == 'GamerValue') {
-      if (GamerValue == true) {
-        console.log(data);
-      }
-      setGamerValue(!GamerValue);
-    }
-    if (data == 'FoodieValue') {
-      if (FoodieValue == true) {
-        console.log(data);
-      }
-      setFoodieValue(!FoodieValue);
-    }
-    // ----------------------------
-    if (data == 'GymRatValue') {
-      if (GymRatValue == true) {
-        console.log(data);
-      }
-      setGymRatValue(!GymRatValue);
-    }
-    if (data == 'StrangerThingsFanValue') {
-      if (StrangerThingsFanValue == true) {
-        console.log(data);
-      }
-      setStrangerThingsFanValue(!StrangerThingsFanValue);
-    }
-    if (data == 'HomebodyValue') {
-      if (HomebodyValue == true) {
-        console.log(data);
-      }
-      setHomebodyValue(!HomebodyValue);
-    }
-    if (data == 'AnimeFanValue') {
-      if (AnimeFanValue == true) {
-        console.log(data);
-      }
-      setAnimeFanValue(!AnimeFanValue);
-    }
-    // ----------------------------
-    if (data == 'ArtLoverValue') {
-      if (ArtLoverValue == true) {
-        console.log(data);
-      }
-      setArtLoverValue(!ArtLoverValue);
-    }
-    if (data == 'FilmBuffValue') {
-      if (FilmBuffValue == true) {
-        console.log(data);
-      }
-      setFilmBuffValue(!FilmBuffValue);
-    }
-    if (data == 'NightOwlValue') {
-      if (NightOwlValue == true) {
-        console.log(data);
-      }
-      setNightOwlValue(!NightOwlValue);
-    }
-    if (data == 'CatPersonValue') {
-      if (CatPersonValue == true) {
-        console.log(data);
-      }
-      setCatPersonValue(!CatPersonValue);
-    }
-    // ----------------------------
-    if (data == 'DogPersonValue') {
-      if (DogPersonValue == true) {
-        console.log(data);
-      }
-      setDogPersonValue(!DogPersonValue);
-    }
-    if (data == 'IntrovertedValue') {
-      if (IntrovertedValue == true) {
-        console.log(data);
-      }
-      setIntrovertedValue(!IntrovertedValue);
-    }
-    if (data == 'EasyGoingValue') {
-      if (EasyGoingValue == true) {
-        console.log(data);
-      }
-      setEasyGoingValue(!EasyGoingValue);
-    }
-    if (data == 'ExtrovertedValue') {
-      if (ExtrovertedValue == true) {
-        console.log(data);
-      }
-      setExtrovertedValue(!ExtrovertedValue);
-    }
-    // ----------------------------
-    if (data == 'NatureLoverValue') {
-      if (NatureLoverValue == true) {
-        console.log(data);
-      }
-      setNatureLoverValue(!NatureLoverValue);
-    }
-    if (data == 'StarWarsFanValue') {
-      if (StarWarsFanValue == true) {
-        console.log(data);
-      }
-      setStarWarsFanValue(!StarWarsFanValue);
-    }
-    if (data == 'ThrillSeekerValue') {
-      if (ThrillSeekerValue == true) {
-        console.log(data);
-      }
-      setThrillSeekerValue(!ThrillSeekerValue);
-    }
-    if (data == 'BasketballFanValue') {
-      if (BasketballFanValue == true) {
-        console.log(data);
-      }
-      setBasketballFanValue(!BasketballFanValue);
-    }
-    // ----------------------------
-    if (data == 'MorningPersonValue') {
-      if (MorningPersonValue == true) {
-        console.log(data);
-      }
-      setMorningPersonValue(!MorningPersonValue);
-    }
-    if (data == 'CoffeeEnthusiastValue') {
-      if (CoffeeEnthusiastValue == true) {
-        console.log(data);
-      }
-      setCoffeeEnthusiastValue(!CoffeeEnthusiastValue);
-    }
-    if (data == 'ClassicalMusicFanValue') {
-      if (ClassicalMusicFanValue == true) {
-        console.log(data);
-      }
-      setClassicalMusicFanValue(!ClassicalMusicFanValue);
-    }
-    if (data == 'BeatlesFanValue') {
-      if (BeatlesFanValue == true) {
-        console.log(data);
-      }
-      setBeatlesFanValue(!BeatlesFanValue);
-    }
-    // ----------------------------
-    if (data == 'AmbitiousValue') {
-      setAmbitiousValue(!AmbitiousValue);
-      console.log(data);
-    }
-  };
-
-
   return (
-
     <ScrollView>
-      <View style = {styles.container}>
-        <Text>{`[MarvelFan: ${marvelValue}]`}</Text>
-        <CheckBox
-          value={marvelValue}
-          onValueChange={val => setMarvelValue(val)}
-          onChange={() => handleChange('marvelValue')}
-        />
-     
-        <Text>{`[DCFan: ${DCValue}]`}</Text>
-        <CheckBox
-          value={DCValue}
-          onValueChange={val => setDCValue(val)}
-          onChange={() => handleChange('DCValue')}
-        />
-
-        <Text>{`[GamerFan: ${GamerValue}]`}</Text>
-        <CheckBox
-          value={GamerValue}
-          onValueChange={val => setGamerValue(val)}
-          onChange={() => handleChange('GamerValue')}
-        />
-
-        <Text>{`[Foodie: ${FoodieValue}]`}</Text>
-        <CheckBox
-          value={FoodieValue}
-          onValueChange={val => setFoodieValue(val)}
-          onChange={() => handleChange('FoodieValue')}
-        />
-
-        <Text>{`[GymRat: ${GymRatValue}]`}</Text>
-        <CheckBox
-          value={GymRatValue}
-          onValueChange={val => setGymRatValue(val)}
-          onChange={() => handleChange('GymRatValue')}
-        />
-
-        <Text>{`[StrangerThingsFan: ${StrangerThingsFanValue}]`}</Text>
-        <CheckBox
-          value={StrangerThingsFanValue}
-          onValueChange={val => setStrangerThingsFanValue(val)}
-          onChange={() => handleChange('StrangerThingsFanValue')}
-        />
-
-        <Text>{`[Homebody: ${HomebodyValue}]`}</Text>
-        <CheckBox
-          value={HomebodyValue}
-          onValueChange={val => setHomebodyValue(val)}
-          onChange={() => handleChange('HomebodyValue')}
-        />
-
-        <Text>{`[AnimeFan: ${AnimeFanValue}]`}</Text>
-        <CheckBox
-          value={AnimeFanValue}
-          onValueChange={val => setAnimeFanValue(val)}
-          onChange={() => handleChange('AnimeFanValue')}
-        />
-
-        <Text>{`[ArtLover: ${ArtLoverValue}]`}</Text>
-        <CheckBox
-          value={ArtLoverValue}
-          onValueChange={val => setArtLoverValue(val)}
-          onChange={() => handleChange('ArtLoverValue')}
-        />
-
-        <Text>{`[FilmBuff: ${FilmBuffValue}]`}</Text>
-        <CheckBox
-          value={FilmBuffValue}
-          onValueChange={val => setFilmBuffValue(val)}
-          onChange={() => handleChange('FilmBuffValue')}
-        />
-
-        <Text>{`[NightOwl: ${NightOwlValue}]`}</Text>
-        <CheckBox
-          value={NightOwlValue}
-          onValueChange={val => setNightOwlValue(val)}
-          onChange={() => handleChange('NightOwlValue')}
-        />
-
-        <Text>{`[CatPerson: ${CatPersonValue}]`}</Text>
-        <CheckBox
-          value={CatPersonValue}
-          onValueChange={val => setCatPersonValue(val)}
-          onChange={() => handleChange('CatPersonValue')}
-        />
-
-        <Text>{`[DogPerson: ${DogPersonValue}]`}</Text>
-        <CheckBox
-          value={DogPersonValue}
-          onValueChange={val => setDogPersonValue(val)}
-          onChange={() => handleChange('DogPersonValue')}
-        />
-
-        <Text>{`[Introverted: ${IntrovertedValue}]`}</Text>
-        <CheckBox
-          value={IntrovertedValue}
-          onValueChange={val => setIntrovertedValue(val)}
-          onChange={() => handleChange('IntrovertedValue')}
-        />
-
-        <Text>{`[EasyGoing: ${EasyGoingValue}]`}</Text>
-        <CheckBox
-          value={EasyGoingValue}
-          onValueChange={val => setEasyGoingValue(val)}
-          onChange={() => handleChange('EasyGoingValue')}
-        />
-
-        <Text>{`[Extroverted: ${ExtrovertedValue}]`}</Text>
-        <CheckBox
-          value={ExtrovertedValue}
-          onValueChange={val => setExtrovertedValue(val)}
-          onChange={() => handleChange('ExtrovertedValue')}
-        />
-
-        <Text>{`[NatureLover: ${NatureLoverValue}]`}</Text>
-        <CheckBox
-          value={NatureLoverValue}
-          onValueChange={val => setNatureLoverValue(val)}
-          onChange={() => handleChange('NatureLoverValue')}
-        />
-
-        <Text>{`[StarWarsFan: ${StarWarsFanValue}]`}</Text>
-        <CheckBox
-          value={StarWarsFanValue}
-          onValueChange={val => setStarWarsFanValue(val)}
-          onChange={() => handleChange('StarWarsFanValue')}
-        />
-
-        <Text>{`[ThrillSeeker: ${ThrillSeekerValue}]`}</Text>
-        <CheckBox
-          value={ThrillSeekerValue}
-          onValueChange={val => setThrillSeekerValue(val)}
-          onChange={() => handleChange('ThrillSeekerValue')}
-        />
-
-        <Text>{`[BasketballFan: ${BasketballFanValue}]`}</Text>
-        <CheckBox
-          value={BasketballFanValue}
-          onValueChange={val => setBasketballFanValue(val)}
-          onChange={() => handleChange('BasketballFanValue')}
-        />
-
-        <Text>{`[MorningPerson: ${MorningPersonValue}]`}</Text>
-        <CheckBox
-          value={MorningPersonValue}
-          onValueChange={val => setMorningPersonValue(val)}
-          onChange={() => handleChange('MorningPersonValue')}
-        />
-
-        <Text>{`[CoffeeEnthusiast: ${CoffeeEnthusiastValue}]`}</Text>
-        <CheckBox
-          value={CoffeeEnthusiastValue}
-          onValueChange={val => setCoffeeEnthusiastValue(val)}
-          onChange={() => handleChange('CoffeeEnthusiastValue')}
-        />
-
-        <Text>{`[ClassicalMusicFan: ${ClassicalMusicFanValue}]`}</Text>
-        <CheckBox
-          value={ClassicalMusicFanValue}
-          onValueChange={val => setClassicalMusicFanValue(val)}
-          onChange={() => handleChange('ClassicalMusicFanValue')}
-        />
-
-        <Text>{`[BeatlesFan: ${BeatlesFanValue}]`}</Text>
-        <CheckBox
-          value={BeatlesFanValue}
-          onValueChange={val => setBeatlesFanValue(val)}
-          onChange={() => handleChange('BeatlesFanValue')}
-        />
-
-        <Text>{`[Ambitious: ${AmbitiousValue}]`}</Text>
-        <CheckBox
-          value={AmbitiousValue}
-          onValueChange={val => setAmbitiousValue(val)}
-          onChange={() => handleChange('AmbitiousValue')
-          
-    }
-        />
-
+      <View>
+        <Text> Ambitious:</Text>
         <Pressable
+          onPress={() => {
+            setambitiousTimesPressed(current => current + 1);
+            console.log(ambitiousTimesPressed);
+          }}
+          style={({pressed}) => [
+            {
+              backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+            },
+            styles.wrapperCustom,
+          ]}>
+          {({pressed}) => (
+            <Text style={styles.text}>
+              {pressed ? 'Pressed!' : 'level of interest'}
+            </Text>
+          )}
+        </Pressable>
+
+        <View style={styles.logBox}>
+          <Text testID="pressable_press_console">{textLog}</Text>
+        </View>
+
+        <Text> MarvelFan:</Text>
+        <Pressable
+          onPress={() => {
+            setmarvelFanValue(now => now + 1);
+            console.log(marvelFanValue);
+          }}
+          style={({pressed}) => [
+            {
+              backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+            },
+            styles.wrapperCustom,
+          ]}>
+          {({pressed}) => (
+            <Text style={styles.text}>
+              {pressed ? 'Pressed!' : 'level of interest'}
+            </Text>
+          )}
+        </Pressable>
+
+        <View style={styles.logBox}>
+          <Text testID="pressable_press_consoe">{marvelLog}</Text>
+        </View>
+      </View>
+
+      <Text> DCFan:</Text>
+      <Pressable
         onPress={() => {
-          setambitiousTimesPressed((current) => current + 1);
-          console.log(ambitiousTimesPressed);
+          setDCValue(now => now + 1);
+          console.log(DCValue);
         }}
-        style={({ pressed }) => [
+        style={({pressed}) => [
           {
-            backgroundColor: pressed
-              ? 'rgb(210, 230, 255)'
-              : 'white'
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
           },
-          styles.wrapperCustom
+          styles.wrapperCustom,
         ]}>
-        {({ pressed }) => (
+        {({pressed}) => (
           <Text style={styles.text}>
             {pressed ? 'Pressed!' : 'level of interest'}
           </Text>
@@ -423,36 +1013,537 @@ export default function EditProfileScreen() {
       </Pressable>
 
       <View style={styles.logBox}>
-        <Text testID="pressable_press_console">{textLog}</Text>
+        <Text testID="pressable_press_consoe">{DClog}</Text>
       </View>
 
-  <CustomButton
-          text="Submit"
-          onPress={() => Alert.alert('Your choices have been submitted.')
-        }
-        />
-        <CustomButton text="Return to userScreen" onPress={OnUserPressed} />
-       
+      <Text> Gamer:</Text>
+      <Pressable
+        onPress={() => {
+          setGamerValue(now => now + 1);
+          console.log(GamerValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
 
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{Gamerlog}</Text>
       </View>
+
+      <Text> Foodie:</Text>
+      <Pressable
+        onPress={() => {
+          setFoodieValue(now => now + 1);
+          console.log(FoodieValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{Foodielog}</Text>
+      </View>
+
+      <Text> GymRat:</Text>
+      <Pressable
+        onPress={() => {
+          setGymRatValue(now => now + 1);
+          console.log(GymRatValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{GymRatlog}</Text>
+      </View>
+
+      <Text>AnimeFan:</Text>
+      <Pressable
+        onPress={() => {
+          setAnimeFanValue(now => now + 1);
+          console.log(AnimeFanValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{AnimeFanlog}</Text>
+      </View>
+
+      <Text>ArtLover:</Text>
+      <Pressable
+        onPress={() => {
+          setArtLoverValue(now => now + 1);
+          console.log(ArtLoverValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{ArtLoverlog}</Text>
+      </View>
+
+      <Text>FilmBuff:</Text>
+      <Pressable
+        onPress={() => {
+          setFilmBuffValue(now => now + 1);
+          console.log(FilmBuffValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{FilmBufflog}</Text>
+      </View>
+
+      <Text>Homebody:</Text>
+      <Pressable
+        onPress={() => {
+          setHomebodyValue(now => now + 1);
+          console.log(HomebodyValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{Homebodylog}</Text>
+      </View>
+
+      <Text>NightOwl:</Text>
+      <Pressable
+        onPress={() => {
+          setNightOwlValue(now => now + 1);
+          console.log(NightOwlValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{NightOwllog}</Text>
+      </View>
+
+      <Text>CatPerson:</Text>
+      <Pressable
+        onPress={() => {
+          setCatPersonValue(now => now + 1);
+          console.log(CatPersonValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{CatPersonlog}</Text>
+      </View>
+
+      <Text>DogPerson:</Text>
+      <Pressable
+        onPress={() => {
+          setDogPersonValue(now => now + 1);
+          console.log(DogPersonValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{DogPersonlog}</Text>
+      </View>
+
+      <Text>EasyGoing:</Text>
+      <Pressable
+        onPress={() => {
+          setEasyGoingValue(now => now + 1);
+          console.log(EasyGoingValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{EasyGoinglog}</Text>
+      </View>
+
+      <Text>BeatlesFan:</Text>
+      <Pressable
+        onPress={() => {
+          setBeatlesFanValue(now => now + 1);
+          console.log(BeatlesFanValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{BeatlesFanlog}</Text>
+      </View>
+
+      <Text>Extroverted:</Text>
+      <Pressable
+        onPress={() => {
+          setExtrovertedValue(now => now + 1);
+          console.log(ExtrovertedValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{Extrovertedlog}</Text>
+      </View>
+
+      <Text>Introverted:</Text>
+      <Pressable
+        onPress={() => {
+          setIntrovertedValue(now => now + 1);
+          console.log(IntrovertedValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{Introvertedlog}</Text>
+      </View>
+
+      <Text>NatureLover:</Text>
+      <Pressable
+        onPress={() => {
+          setNatureLoverValue(now => now + 1);
+          console.log(NatureLoverValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{NatureLoverlog}</Text>
+      </View>
+
+      <Text>StarWarsFan:</Text>
+      <Pressable
+        onPress={() => {
+          setStarWarsFanValue(now => now + 1);
+          console.log(StarWarsFanValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{StarWarsFanlog}</Text>
+      </View>
+
+      <Text>ThrillSeeker:</Text>
+      <Pressable
+        onPress={() => {
+          setThrillSeekerValue(now => now + 1);
+          console.log(ThrillSeekerValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{ThrillSeekerlog}</Text>
+      </View>
+
+      <Text>BasketballFan:</Text>
+      <Pressable
+        onPress={() => {
+          setBasketballFanValue(now => now + 1);
+          console.log(BasketballFanValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{BasketballFanlog}</Text>
+      </View>
+
+      <Text>MorningPerson:</Text>
+      <Pressable
+        onPress={() => {
+          setMorningPersonValue(now => now + 1);
+          console.log(MorningPersonValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{MorningPersonlog}</Text>
+      </View>
+
+      <Text>CoffeeEnthusiast:</Text>
+      <Pressable
+        onPress={() => {
+          setCoffeeEnthusiastValue(now => now + 1);
+          console.log(CoffeeEnthusiastValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{CoffeeEnthusiastlog}</Text>
+      </View>
+
+      <Text>ClassicalMusicFan:</Text>
+      <Pressable
+        onPress={() => {
+          setClassicalMusicFanValue(now => now + 1);
+          console.log(ClassicalMusicFanValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{ClassicalMusicFanlog}</Text>
+      </View>
+
+      <Text>StrangerThingsFan:</Text>
+      <Pressable
+        onPress={() => {
+          setStrangerThingsFanValue(now => now + 1);
+          console.log(StrangerThingsFanValue);
+        }}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+          },
+          styles.wrapperCustom,
+        ]}>
+        {({pressed}) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'level of interest'}
+          </Text>
+        )}
+      </Pressable>
+
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_consoe">{StrangerThingsFanlog}</Text>
+      </View>
+
+      <CustomButton
+        text="Submit"
+        onPress={() => Alert.alert('Your choices have been submitted.')}
+      />
+      <CustomButton text="Return to userScreen" onPress={OnUserPressed} />
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
- 
   text: {
-    fontSize: 16
+    fontSize: 16,
   },
   wrapperCustom: {
     borderRadius: 8,
-    padding: 6
+    padding: 6,
   },
   logBox: {
     padding: 20,
     margin: 10,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#f0f0f0',
-    backgroundColor: '#f9f9f9'
-  }
+    backgroundColor: '#f9f9f9',
+  },
 });

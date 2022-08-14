@@ -18,7 +18,7 @@ navigation.navigate('Map');
 };
 const settingsPressed = () => {
     //Enables user upon button press to traverse to Create an account screen
-  navigation.navigate('Map');
+  navigation.navigate('Edit');
   };
 
 const friendPressed = () => {
@@ -85,16 +85,16 @@ const styles = StyleSheet.create({
   world: {
     maxHeight:75,
     right:-125,
-    bottom: -655,
+    bottom: -590,
  },
  Settings:{
   maxWidth: 75,
     right: -300,
-    bottom: -575,
+    bottom: -507,
  },
 Friend:{
   maxWidth: 100,
-  bottom: -333
+  bottom: -264
 },
 logout:{
 maxWidth: 90,

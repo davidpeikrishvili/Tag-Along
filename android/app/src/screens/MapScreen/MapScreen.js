@@ -110,7 +110,7 @@ Places(){
                         <Text>{element.name}</Text>
                         
                         
-                        <Text>Rating:{element.rating}</Text>            
+                        <Text>Vicinity: {element.vicinity}</Text>            
                     </View>
                 </Callout>
                 </Marker>
@@ -244,15 +244,15 @@ coordinate={{
 
                 <View style={styles.button}>
                 <TouchableOpacity
-                onPress={()=> {this.props.navigation.navigate('User')
+                onPress={()=> {
                 this.state.place_location_lat=places.geometry.location.lat
                 this.state.place_location_long=places.geometry.location.lng
                 //place_location stores variables for lat and long of the clicked location of interest
                 console.log(this.state.place_location_lat)
                 console.log(this.state.place_location_long)
+                this.props.navigation.navigate('Matches')
              }
             }
-                
                 style = {[styles.Button_Text,{borderColor:'#FF6347',borderWidth:2}]}
                 >
                     <Text style = {[styles.texting,{
@@ -261,13 +261,12 @@ coordinate={{
                 </TouchableOpacity>
                </View>
            </View>
-           
-            
+        
+
 
 
             </View>
             )}  
-            
             </ScrollView>
 
 
@@ -373,6 +372,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         paddingVertical: 10,
+
       },
       //Styling for the fab button
       fab:{
