@@ -1,6 +1,6 @@
 const API_KEY = 'AIzaSyCQYSxVSPEXyCEa-7r-8ThhaqiH4YWW6oU';
 const _url_ = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-
+const backend_url = "https://tag-along-backend-pg9zg.ondigitalocean.app/api";
 
 
 import React, {Component } from 'react';
@@ -11,8 +11,8 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import Geolocation from 'react-native-geolocation-service';
 import { request,PERMISSIONS } from 'react-native-permissions';
 export default class Map extends Component {
-constructor(){
-    super()
+constructor(props){
+    super(props)
     this.state={
         lat:0,
         long:0,
@@ -22,7 +22,9 @@ constructor(){
         my_images:[],
         default_andy:[],
         place_location_lat:null,
-        place_location_long:null
+        place_location_long:null,
+        username: this.props.route.params.username,
+        user_data: {}
     }
 }
 
@@ -57,11 +59,28 @@ get_current_Location(){
     )
 }
 
-
 //Gets current Position of the user and sets it as the default/starting location of the map when you load in.
-componentDidMount(){
+componentDidMount() {
     this.requestLocationPermission();
     this.get_current_Location();
+    fetch(`${backend_url}/${this.state.username}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+    
+        .then((response) => response.json())
+        .then(data => {
+            this.setState({user_data: data});
+            //console.log("Matched user: ",data['MatchedUser']);
+        })
+        .then(thirdGet = true)
+        .catch((error) => {
+            console.error(error);
+        });
+
 }
 
 
@@ -137,6 +156,43 @@ URL2(width,references,API2){
     const keyz = `&key=${API2}`;
     return `${urlz}${maxwidth}${refere}${keyz}`;
     }
+
+//This function changes the selected location of the user and navigates to matches.
+GetMatches(name, lat, long, picture){
+    this.state.place_location_lat=lat;
+    this.state.place_location_long=long;
+    //place_location stores variables for lat and long of the clicked location of interest
+    console.log(this.state.place_location_lat);
+    console.log(this.state.place_location_long);
+    profile = this.state.user_data;
+    profile['InterestedLat'] = this.state.place_location_lat;
+    profile['InterestedLong'] = this.state.place_location_long;
+    console.log(profile);
+    fetch(`${backend_url}/update/${this.state.username}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
+      })
+
+        .then((response) => response.json())
+        
+        .then(data => {
+            if (!data['detail']) {
+                console.log(data);
+                this.props.navigation.navigate("Matches", {username: this.state.username, location: name, picture: picture});
+            }
+            else {
+                console.log(data['detail']);
+            }
+        })
+        
+        .catch((error) => {
+            console.error(error);
+        })
+}
 
 render(){
 return(
@@ -234,25 +290,18 @@ coordinate={{
                     <Text style={styles.texting}>{places.business_status}</Text>
                   
                 </View>
-
-                <View style={styles.button}>
+                { !this.state.user_data["Matched"] &&
+                (<View style={styles.button}>
                 <TouchableOpacity
-                onPress={()=> {this.props.navigation.navigate('User')
-                this.state.place_location_lat=places.geometry.location.lat
-                this.state.place_location_long=places.geometry.location.lng
-                //place_location stores variables for lat and long of the clicked location of interest
-                console.log(this.state.place_location_lat)
-                console.log(this.state.place_location_long)
-             }
-            }
-                
+                onPress={() => this.GetMatches(places.name,places.geometry.location.lat,places.geometry.location.lng,this.state.my_images[syntax].toString())}
                 style = {[styles.Button_Text,{borderColor:'#FF6347',borderWidth:2}]}
                 >
                     <Text style = {[styles.texting,{
                         color:'#FF6347'
                     }]}>Interested</Text>
                 </TouchableOpacity>
-               </View>
+               </View>)
+               }
            </View>
            
 

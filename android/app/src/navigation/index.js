@@ -11,6 +11,7 @@ import UserProfileScreen from '../screens/UserProfileScreen';
 import FriendScreen from '../screens/FriendScreen';
 import SettingScreen from '../screens/SettingScreen';
 import EditProfileScreen from '../screens/EditProfileScreen/EditProfileScreen';
+import MatchedUsersScreen from '../screens/MatchedUsersScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ const Navigation = () => {
         <Stack.Screen name= "Friend" component={FriendScreen}/>
         <Stack.Screen name= "Setting" component={SettingScreen}/>
         <Stack.Screen name= "Edit" component={EditProfileScreen}/>
+        <Stack.Screen name= "Matches" component={MatchedUsersScreen}/>
 
         
         </Stack.Navigator>

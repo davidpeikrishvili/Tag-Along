@@ -13,6 +13,7 @@
 #import <React/RCTSurfacePresenter.h>
 #import <React/RCTSurfacePresenterBridgeAdapter.h>
 #import <ReactCommon/RCTTurboModuleManager.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 #import <react/config/ReactNativeConfig.h>
 
