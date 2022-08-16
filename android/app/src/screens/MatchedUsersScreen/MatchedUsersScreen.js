@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, Image, ImageBackground, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
+import {Button, View, Text, Image, ImageBackground, StyleSheet, ScrollView, useWindowDimensions} from 'react-native';
 import Logo from '../../../../../assets/images/Tag_Along.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
@@ -9,24 +9,20 @@ const url = "https://tag-along-backend-pg9zg.ondigitalocean.app/api"
 
 //const{height} = useWindowDimensions();
 
-const MatchedUsersScreen = () => {
-  const [username, setUsername] = useState('NewUser123');
+const MatchedUsersScreen = ({route}) => {
+  const [username, setUsername] = useState(route.params.username);
   const [matches, setMatches] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [userData, setUserData] = useState({});
-  const [matchedUsername, setMatchedUsername] = useState('NewUser123');
+  const [matchedUsername, setMatchedUsername] = useState(route.params.username);
   const [matched, setMatched] = useState(false);
 
   const navigation = useNavigation();
-
+  
   useEffect(() => {
-    timer = setInterval(() => GetMatches(), 2000)
-  },[])
-
-  const GetMatches = () => {
-    if (!matched){
-      secondGet = false, thirdGet = false;
-      fetch(`${url}/matches/${username}`, {
+    if (matched !== true) {
+      console.log("Username: ",username);
+      fetch(`${url}/${username}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -36,57 +32,91 @@ const MatchedUsersScreen = () => {
     
         .then((response) => response.json())
         .then(data => {
-            setMatches(data['matches']);
+            setUserData(data);
+            //console.log("Matched user: ",data['MatchedUser']);
         })
-        .then(secondGet = true)
+        .then(thirdGet = true)
         .catch((error) => {
             console.error(error);
         });
-      
-        if (secondGet) {
-          console.log("Username: ",username);
-          fetch(`${url}/${username}`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-              },
-            })
-        
-            .then((response) => response.json())
-            .then(data => {
-                setUserData(data);
-                setMatchedUsername(data['MatchedUser']);
-                console.log("Matched user: ",data['MatchedUser']);
-            })
-            .then((username !== matchedUsername) ? thirdGet=true:thirdGet=false)
-            .catch((error) => {
-                console.error(error);
-            });
-        }
-        
-        if (thirdGet) {
-          console.log("You shouldn't be here.");
-          fetch(`${url}/${matchedUsername}`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-          })
-        
-            .then((response) => response.json())
-            .then(data => {
-                if (data['MatchedUser'] === username)
-                  setMatched(true);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-        }
+        timer1 = setInterval(() => GetMatches(username), 2500);
+        timer2 = setInterval(() => CheckMatch(username, matchedUsername), 5000);
     }
-    
+      
+  }, [matchedUsername]);
+
+  useEffect(() => {
+    if (matched === true) {
+      profile = userData;
+      profile["Matched"] = true;
+        fetch(`${url}/update/${username}`, {
+          method: 'PUT',
+          headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(profile),
+        })
+
+          .then((response) => response.json())
+          
+          .then(data => {
+              if (!data['detail']) {
+                  console.log(data);
+                  //this.props.navigation.navigate("Matches", {username: this.state.username});
+              }
+              else {
+                  console.log(data['detail']);
+              }
+          })
+          
+          .catch((error) => {
+              console.error(error);
+          })
+    }
+  }, [matched]);
+  
+  const GetMatches = (username) => {
+    fetch(`${url}/matches/${username}`, {
+      method: 'GET',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+  
+      .then((response) => response.json())
+      .then(data => {
+          setMatches(data['matches']);
+      })
+      .then(secondGet = true)
+      .catch((error) => {
+          console.error(error);
+      });
   }
+
+  const CheckMatch = (username, matchedUsername) => {
+    if ((matchedUsername !== username)) {
+      console.log("You should be here.");
+      fetch(`${url}/${matchedUsername}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+      })
+    
+        .then((response) => response.json())
+        .then(data => {
+            if (data['MatchedUser'] === username)
+              setMatched(true);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+  }
+
 
   const onMatchPress = (name) => {
     console.log("MatchPress: ",username, name);
@@ -106,6 +136,7 @@ const MatchedUsersScreen = () => {
         .then(data => {
             if (!data['detail']) {
                 console.log(data);
+                setMatchedUsername(data['MatchedUser']);
                 //this.props.navigation.navigate("Matches", {username: this.state.username});
             }
             else {
@@ -117,29 +148,47 @@ const MatchedUsersScreen = () => {
             console.error(error);
         })
   }
-
-  if (matched)
-      return (<View>
-        <Text>Matches</Text>
-        <Text>You have matched with {matchedUsername}!</Text>
-        </View>);
+  console.log("Matched? ", matched);
+  if (matched === true)
+      return ( <ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style={styles.screen}>
+      <ScrollView showsHorizontalScrollIndicator={false}>
+      <View>
+        <Text style={styles.text}>You have matched with {matchedUsername}!</Text>
+        </View>
+        </ScrollView>
+        </ImageBackground>);
   else {
-    return matches.map((user, index) =>{
-      console.log("Checking match: ",user, matchedUsername);
+    return (<ImageBackground source ={require('./../../../../../assets/images/BG.jpeg')} style={styles.screen}>
+      {matches.map((user, index) =>{
+      //console.log("Checking match: ",user, matchedUsername);
       if (user === matchedUsername)
         return(<View key = {index}>
-          <Text>{user}</Text>
-          <CustomButton text={"Waiting..."} style={{color:'gray'}} />
+          <Text style={styles.text}>{user}</Text>
+          <Button title="Waiting..." color="#888888" />
         </View>)
       else
           return(<View key = {index}>
-            <Text>{user}</Text>
-            <CustomButton text={"Match!"} style={{color:'red'}} onPress={() => onMatchPress(user)} />
+            <Text style={styles.text}>{user}</Text>
+            <Button title="Match!" color="#FF0000" onPress={() => onMatchPress(user)} />
           </View>)
-    })
+    })}
+    </ImageBackground>)
   }
   
 }
+
+const styles = StyleSheet.create({
+  screen:{
+    width: '100%',
+    height:'100%',
+    alignItems: 'center'
+  },
+  text:{
+    color: "#FFFFFF",
+  }
+})
+
+
 
 /*
 const MatchedUsersScreen = () => {

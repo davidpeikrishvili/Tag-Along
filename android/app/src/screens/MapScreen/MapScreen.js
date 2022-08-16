@@ -22,7 +22,8 @@ constructor(){
         my_images:[],
         default_andy:[],
         place_location_lat:null,
-        place_location_long:null
+        place_location_long:null,
+        username: ""
     }
 }
 
@@ -57,28 +58,23 @@ get_current_Location(){
     )
 }
 
-
 //Gets current Position of the user and sets it as the default/starting location of the map when you load in.
 componentDidMount(){
     this.requestLocationPermission();
     this.get_current_Location();
+    this.setState({username: this.props.route.params.username});
 }
 
 
 
 //This function is used to fetch all the places around the user using the url provided.
 Places(){
-    const url = this.URL(this.state.lat,this.state.long,600, 'restaurants', API_KEY)
+    const url = this.URL(this.state.lat,this.state.long,600, '', API_KEY)
     fetch(url)
     .then((data)=>data.json())
     .then((res)=>{
       //console.log(res)
       //Google Photos API set-up
-        
-        
-        
-
-
         for(let  i =1; i <6;i++){
         if(res.results[i].photos[0].photo_reference == null)
         {
@@ -110,7 +106,7 @@ Places(){
                         <Text>{element.name}</Text>
                         
                         
-                        <Text>Vicinity: {element.vicinity}</Text>            
+                        <Text>Rating:{element.rating}</Text>            
                     </View>
                 </Callout>
                 </Marker>
@@ -138,6 +134,44 @@ URL2(width,references,API2){
     return `${urlz}${maxwidth}${refere}${keyz}`;
     }
 
+//This function changes the selected location of the user and navigates to matches.
+GetMatches(lat, long){
+    this.state.place_location_lat=lat;
+    this.state.place_location_long=long;
+    //place_location stores variables for lat and long of the clicked location of interest
+    console.log(this.state.place_location_lat);
+    console.log(this.state.place_location_long);
+    const backend_url = "https://tag-along-backend-pg9zg.ondigitalocean.app/api"
+    fetch(`${backend_url}/update/${this.state.username}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            Username: this.state.username,
+            InterestedLat: this.state.place_location_lat,
+            InterestedLong: this.state.place_location_long,
+        }),
+      })
+
+        .then((response) => response.json())
+        
+        .then(data => {
+            if (!data['detail']) {
+                console.log(data);
+                this.props.navigation.navigate("Matches", {username: this.state.username});
+            }
+            else {
+                console.log(data['detail']);
+            }
+        })
+        
+        .catch((error) => {
+            console.error(error);
+        })
+}
+
 render(){
 return(
 <View style ={styles.sectionContainer}>
@@ -148,10 +182,7 @@ return(
         longitude: this.state.long,        
         latitudeDelta:0.03,
         longitudeDelta:0.04
-    }}
-    
-    >
-        
+    }}>
 <Marker 
 //Person Marker
 coordinate={{
@@ -216,22 +247,18 @@ coordinate={{
                 scrollEventThrottle={1}
                 showsHorizontalScrollIndicator={true}
                 style ={styles.Scrolling}
-                
            
           
                 >                  
              {this.state.default_andy.map((places,syntax)=> 
              <View key={syntax}>
             
-               <View style={styles.card}
-               
-               >
+               <View style={styles.card}>
                <Image
                    source = {{uri:this.state.my_images[syntax].toString()}}
                    style ={styles.cardImage}
                    resizeMode="cover"
-                   
-                   
+                   //onPress={()=> }
                />
                
                 <View>
@@ -244,15 +271,7 @@ coordinate={{
 
                 <View style={styles.button}>
                 <TouchableOpacity
-                onPress={()=> {
-                this.state.place_location_lat=places.geometry.location.lat
-                this.state.place_location_long=places.geometry.location.lng
-                //place_location stores variables for lat and long of the clicked location of interest
-                console.log(this.state.place_location_lat)
-                console.log(this.state.place_location_long)
-                this.props.navigation.navigate('Matches')
-             }
-            }
+                onPress={() => this.GetMatches(places.geometry.location.lat,places.geometry.location.lng)}
                 style = {[styles.Button_Text,{borderColor:'#FF6347',borderWidth:2}]}
                 >
                     <Text style = {[styles.texting,{
@@ -261,54 +280,14 @@ coordinate={{
                 </TouchableOpacity>
                </View>
            </View>
-        
+           
 
 
 
             </View>
             )}  
+            
             </ScrollView>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </View>
 );
 }
@@ -368,11 +347,10 @@ const styles = StyleSheet.create({
       //Styling of the scroll thingy
       Scrolling:{
         position: "absolute",
-        bottom: 0,
+        bottom: 20,
         left: 0,
         right: 0,
         paddingVertical: 10,
-
       },
       //Styling for the fab button
       fab:{
@@ -410,17 +388,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 3
     },
-
-
-
-
-
-
-
-
-
-
-
-
 
 });

@@ -31,7 +31,7 @@ const onSignInPressed = () => {
         if (!data['detail']) {
           console.log(data);
           if (data['Password'] === password)
-            navigation.navigate("User");
+            navigation.navigate("User",{username: username});
           else
             setErrorMessage("Wrong password.");
         }

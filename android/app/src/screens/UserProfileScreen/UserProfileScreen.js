@@ -7,14 +7,14 @@ import { View, Image, ImageBackground, StyleSheet, TouchableWithoutFeedback} fro
 import { useNavigation } from '@react-navigation/native';
 
 
-const UserProfileScreen = () => {
+const UserProfileScreen = ({route}) => {
 
 
 const navigation = useNavigation();
 
 const worldPressed = () => {
   //Enables user upon button press to traverse to Create an account screen
-navigation.navigate('Map');
+navigation.navigate('Map', {username: route.params.username});
 };
 const settingsPressed = () => {
     //Enables user upon button press to traverse to Create an account screen
@@ -85,16 +85,16 @@ const styles = StyleSheet.create({
   world: {
     maxHeight:75,
     right:-125,
-    bottom: -590,
+    bottom: -655,
  },
  Settings:{
   maxWidth: 75,
     right: -300,
-    bottom: -507,
+    bottom: -575,
  },
 Friend:{
   maxWidth: 100,
-  bottom: -264
+  bottom: -333
 },
 logout:{
 maxWidth: 90,

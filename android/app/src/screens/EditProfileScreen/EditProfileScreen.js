@@ -6,8 +6,8 @@ import {
   ScrollView,
   Alert,
   Pressable,
+  ImageBackground,
 } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
 import CustomButton from '../../components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 
@@ -42,7 +42,7 @@ export default function EditProfileScreen() {
   let textLog = '';
 
   if (ambitiousTimesPressed < 4) {
-    textLog = ambitiousTimesPressed + 'not interested';
+    textLog = 'not interested';
   }
   if (ambitiousTimesPressed == 1) {
     textLog = 'Somewhat Interested';
@@ -77,7 +77,7 @@ export default function EditProfileScreen() {
   let marvelLog = '';
 
   if (marvelFanValue == 0) {
-    marvelLog = marvelFanValue + ' not interested';
+    marvelLog =  ' not interested';
     console.log('marvelFanValue: ', marvelLog);
   }
   if (marvelFanValue == 1) {
@@ -112,7 +112,7 @@ export default function EditProfileScreen() {
   let DClog = '';
 
   if (DCValue == 0) {
-    DClog = DCValue + ' not interested';
+    DClog = ' not interested';
     console.log('DCValue: ', DClog);
   }
   if (DCValue == 1) {
@@ -148,7 +148,7 @@ export default function EditProfileScreen() {
   let Gamerlog = '';
 
   if (GamerValue == 0) {
-    Gamerlog = GamerValue + ' not interested';
+    Gamerlog =  ' not interested';
     console.log('GamerValue: ', Gamerlog);
   }
   if (GamerValue == 1) {
@@ -184,7 +184,7 @@ export default function EditProfileScreen() {
   let Foodielog = '';
 
   if (FoodieValue == 0) {
-    Foodielog = FoodieValue + ' not interested';
+    Foodielog = ' not interested';
     console.log('FoodieValue: ', Foodielog);
   }
   if (FoodieValue == 1) {
@@ -220,7 +220,7 @@ export default function EditProfileScreen() {
   let GymRatlog = '';
 
   if (GymRatValue == 0) {
-    GymRatlog = GymRatValue + ' not interested';
+    GymRatlog = ' not interested';
     console.log('GymRatValue: ', GymRatlog);
   }
   if (GymRatValue == 1) {
@@ -256,7 +256,7 @@ export default function EditProfileScreen() {
   let AnimeFanlog = '';
 
   if (AnimeFanValue == 0) {
-    AnimeFanlog = AnimeFanValue + ' not interested';
+    AnimeFanlog = ' not interested';
     console.log('AnimeFanValue: ', AnimeFanlog);
   }
   if (AnimeFanValue == 1) {
@@ -292,7 +292,7 @@ export default function EditProfileScreen() {
   let ArtLoverlog = '';
 
   if (ArtLoverValue == 0) {
-    ArtLoverlog = ArtLoverValue + ' not interested';
+    ArtLoverlog =' not interested';
     console.log('ArtLoverValue: ', ArtLoverlog);
   }
   if (ArtLoverValue == 1) {
@@ -328,7 +328,7 @@ export default function EditProfileScreen() {
   let FilmBufflog = '';
 
   if (FilmBuffValue == 0) {
-    FilmBufflog = FilmBuffValue + ' not interested';
+    FilmBufflog = ' not interested';
     console.log('FilmBuffValue: ', FilmBufflog);
   }
   if (FilmBuffValue == 1) {
@@ -364,7 +364,7 @@ export default function EditProfileScreen() {
   let Homebodylog = '';
 
   if (HomebodyValue == 0) {
-    Homebodylog = HomebodyValue + ' not interested';
+    Homebodylog =  ' not interested';
     console.log('HomebodyValue: ', Homebodylog);
   }
   if (HomebodyValue == 1) {
@@ -400,7 +400,7 @@ export default function EditProfileScreen() {
   let NightOwllog = '';
 
   if (NightOwlValue == 0) {
-    NightOwllog = NightOwlValue + ' not interested';
+    NightOwllog = ' not interested';
     console.log('NightOwlValue: ', NightOwllog);
   }
   if (NightOwlValue == 1) {
@@ -436,7 +436,7 @@ export default function EditProfileScreen() {
   let CatPersonlog = '';
 
   if (CatPersonValue == 0) {
-    CatPersonlog = CatPersonValue + ' not interested';
+    CatPersonlog = ' not interested';
     console.log('CatPersonValue: ', CatPersonlog);
   }
   if (CatPersonValue == 1) {
@@ -472,7 +472,7 @@ export default function EditProfileScreen() {
   let DogPersonlog = '';
 
   if (DogPersonValue == 0) {
-    DogPersonlog = DogPersonValue + ' not interested';
+    DogPersonlog = ' not interested';
     console.log('DogPersonValue: ', DogPersonlog);
   }
   if (DogPersonValue == 1) {
@@ -508,7 +508,7 @@ export default function EditProfileScreen() {
   let EasyGoinglog = '';
 
   if (EasyGoingValue == 0) {
-    EasyGoinglog = EasyGoingValue + ' not interested';
+    EasyGoinglog =' not interested';
     console.log('EasyGoingValue: ', EasyGoinglog);
   }
   if (EasyGoingValue == 1) {
@@ -544,7 +544,7 @@ export default function EditProfileScreen() {
   let BeatlesFanlog = '';
 
   if (BeatlesFanValue == 0) {
-    BeatlesFanlog = BeatlesFanValue + ' not interested';
+    BeatlesFanlog = ' not interested';
     console.log('BeatlesFanValue: ', BeatlesFanlog);
   }
   if (BeatlesFanValue == 1) {
@@ -580,7 +580,7 @@ export default function EditProfileScreen() {
   let Extrovertedlog = '';
 
   if (ExtrovertedValue == 0) {
-    Extrovertedlog = ExtrovertedValue + ' not interested';
+    Extrovertedlog = ' not interested';
     console.log('ExtrovertedValue: ', Extrovertedlog);
   }
   if (ExtrovertedValue == 1) {
@@ -616,7 +616,7 @@ export default function EditProfileScreen() {
   let Introvertedlog = '';
 
   if (IntrovertedValue == 0) {
-    Introvertedlog = IntrovertedValue + ' not interested';
+    Introvertedlog =  ' not interested';
     console.log('IntrovertedValue: ', Introvertedlog);
   }
   if (IntrovertedValue == 1) {
@@ -652,7 +652,7 @@ export default function EditProfileScreen() {
   let NatureLoverlog = '';
 
   if (NatureLoverValue == 0) {
-    NatureLoverlog = NatureLoverValue + ' not interested';
+    NatureLoverlog = ' not interested';
     console.log('NatureLoverValue: ', NatureLoverlog);
   }
   if (NatureLoverValue == 1) {
@@ -688,7 +688,7 @@ export default function EditProfileScreen() {
   let StarWarsFanlog = '';
 
   if (StarWarsFanValue == 0) {
-    StarWarsFanlog = StarWarsFanValue + ' not interested';
+    StarWarsFanlog =  ' not interested';
     console.log('StarWarsFanValue: ', StarWarsFanlog);
   }
   if (StarWarsFanValue == 1) {
@@ -724,7 +724,7 @@ export default function EditProfileScreen() {
   let ThrillSeekerlog = '';
 
   if (ThrillSeekerValue == 0) {
-    ThrillSeekerlog = ThrillSeekerValue + ' not interested';
+    ThrillSeekerlog =  ' not interested';
     console.log('ThrillSeekerValue: ', ThrillSeekerlog);
   }
   if (ThrillSeekerValue == 1) {
@@ -760,7 +760,7 @@ export default function EditProfileScreen() {
   let BasketballFanlog = '';
 
   if (BasketballFanValue == 0) {
-    BasketballFanlog = BasketballFanValue + ' not interested';
+    BasketballFanlog = ' not interested';
     console.log('BasketballFanValue: ', BasketballFanlog);
   }
   if (BasketballFanValue == 1) {
@@ -796,7 +796,7 @@ export default function EditProfileScreen() {
   let MorningPersonlog = '';
 
   if (MorningPersonValue == 0) {
-    MorningPersonlog = MorningPersonValue + ' not interested';
+    MorningPersonlog =' not interested';
     console.log('MorningPersonValue: ', MorningPersonlog);
   }
   if (MorningPersonValue == 1) {
@@ -832,7 +832,7 @@ export default function EditProfileScreen() {
   let CoffeeEnthusiastlog = '';
 
   if (CoffeeEnthusiastValue == 0) {
-    CoffeeEnthusiastlog = CoffeeEnthusiastValue + ' not interested';
+    CoffeeEnthusiastlog =  ' not interested';
     console.log('CoffeeEnthusiastValue: ', CoffeeEnthusiastlog);
   }
   if (CoffeeEnthusiastValue == 1) {
@@ -868,7 +868,7 @@ export default function EditProfileScreen() {
   let ClassicalMusicFanlog = '';
 
   if (ClassicalMusicFanValue == 0) {
-    ClassicalMusicFanlog = ClassicalMusicFanValue + ' not interested';
+    ClassicalMusicFanlog = ' not interested';
     console.log('ClassicalMusicFanValue: ', ClassicalMusicFanlog);
   }
   if (ClassicalMusicFanValue == 1) {
@@ -904,7 +904,7 @@ export default function EditProfileScreen() {
   let StrangerThingsFanlog = '';
 
   if (StrangerThingsFanValue == 0) {
-    StrangerThingsFanlog = StrangerThingsFanValue + ' not interested';
+    StrangerThingsFanlog =  ' not interested';
     console.log('StrangerThingsFanValue: ', StrangerThingsFanlog);
   }
   if (StrangerThingsFanValue == 1) {
@@ -944,9 +944,10 @@ export default function EditProfileScreen() {
   };
 
   return (
+    <ImageBackground source ={require('./../../../../../assets/images/editscreen.jpg')} style ={styles.screen}>
     <ScrollView>
       <View>
-        <Text> Ambitious:</Text>
+        <Text style={styles.texting}> Ambitious:</Text>
         <Pressable
           onPress={() => {
             setambitiousTimesPressed(current => current + 1);
@@ -960,7 +961,7 @@ export default function EditProfileScreen() {
           ]}>
           {({pressed}) => (
             <Text style={styles.text}>
-              {pressed ? 'Pressed!' : 'level of interest'}
+              {pressed ? 'Pressed!' : 'click to add tag'}
             </Text>
           )}
         </Pressable>
@@ -969,7 +970,7 @@ export default function EditProfileScreen() {
           <Text testID="pressable_press_console">{textLog}</Text>
         </View>
 
-        <Text> MarvelFan:</Text>
+        <Text style={styles.texting}>MarvelFan:</Text>
         <Pressable
           onPress={() => {
             setmarvelFanValue(now => now + 1);
@@ -983,7 +984,7 @@ export default function EditProfileScreen() {
           ]}>
           {({pressed}) => (
             <Text style={styles.text}>
-              {pressed ? 'Pressed!' : 'level of interest'}
+              {pressed ? 'Pressed!' : 'click to add tag'}
             </Text>
           )}
         </Pressable>
@@ -993,7 +994,7 @@ export default function EditProfileScreen() {
         </View>
       </View>
 
-      <Text> DCFan:</Text>
+      <Text style={styles.texting}> DCFan:</Text>
       <Pressable
         onPress={() => {
           setDCValue(now => now + 1);
@@ -1007,7 +1008,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1016,7 +1017,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{DClog}</Text>
       </View>
 
-      <Text> Gamer:</Text>
+      <Text style={styles.texting}> Gamer:</Text>
       <Pressable
         onPress={() => {
           setGamerValue(now => now + 1);
@@ -1030,7 +1031,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1039,7 +1040,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{Gamerlog}</Text>
       </View>
 
-      <Text> Foodie:</Text>
+      <Text style={styles.texting}> Foodie:</Text>
       <Pressable
         onPress={() => {
           setFoodieValue(now => now + 1);
@@ -1053,7 +1054,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1062,7 +1063,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{Foodielog}</Text>
       </View>
 
-      <Text> GymRat:</Text>
+      <Text style={styles.texting}>GymRat:</Text>
       <Pressable
         onPress={() => {
           setGymRatValue(now => now + 1);
@@ -1076,7 +1077,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1085,7 +1086,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{GymRatlog}</Text>
       </View>
 
-      <Text>AnimeFan:</Text>
+      <Text style={styles.texting}>AnimeFan:</Text>
       <Pressable
         onPress={() => {
           setAnimeFanValue(now => now + 1);
@@ -1099,7 +1100,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1108,7 +1109,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{AnimeFanlog}</Text>
       </View>
 
-      <Text>ArtLover:</Text>
+      <Text style={styles.texting}>ArtLover:</Text>
       <Pressable
         onPress={() => {
           setArtLoverValue(now => now + 1);
@@ -1122,7 +1123,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1131,7 +1132,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{ArtLoverlog}</Text>
       </View>
 
-      <Text>FilmBuff:</Text>
+      <Text style={styles.texting}>FilmBuff:</Text>
       <Pressable
         onPress={() => {
           setFilmBuffValue(now => now + 1);
@@ -1145,7 +1146,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1154,7 +1155,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{FilmBufflog}</Text>
       </View>
 
-      <Text>Homebody:</Text>
+      <Text style={styles.texting}>Homebody:</Text>
       <Pressable
         onPress={() => {
           setHomebodyValue(now => now + 1);
@@ -1168,7 +1169,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1177,7 +1178,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{Homebodylog}</Text>
       </View>
 
-      <Text>NightOwl:</Text>
+      <Text style={styles.texting}>NightOwl:</Text>
       <Pressable
         onPress={() => {
           setNightOwlValue(now => now + 1);
@@ -1191,7 +1192,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1200,7 +1201,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{NightOwllog}</Text>
       </View>
 
-      <Text>CatPerson:</Text>
+      <Text style={styles.texting}>CatPerson:</Text>
       <Pressable
         onPress={() => {
           setCatPersonValue(now => now + 1);
@@ -1214,7 +1215,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1223,7 +1224,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{CatPersonlog}</Text>
       </View>
 
-      <Text>DogPerson:</Text>
+      <Text style={styles.texting}>DogPerson:</Text>
       <Pressable
         onPress={() => {
           setDogPersonValue(now => now + 1);
@@ -1237,7 +1238,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1246,7 +1247,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{DogPersonlog}</Text>
       </View>
 
-      <Text>EasyGoing:</Text>
+      <Text style={styles.texting}>EasyGoing:</Text>
       <Pressable
         onPress={() => {
           setEasyGoingValue(now => now + 1);
@@ -1260,7 +1261,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1269,7 +1270,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{EasyGoinglog}</Text>
       </View>
 
-      <Text>BeatlesFan:</Text>
+      <Text style={styles.texting}>BeatlesFan:</Text>
       <Pressable
         onPress={() => {
           setBeatlesFanValue(now => now + 1);
@@ -1283,7 +1284,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1292,7 +1293,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{BeatlesFanlog}</Text>
       </View>
 
-      <Text>Extroverted:</Text>
+      <Text style={styles.texting}>Extroverted:</Text>
       <Pressable
         onPress={() => {
           setExtrovertedValue(now => now + 1);
@@ -1306,7 +1307,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1315,7 +1316,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{Extrovertedlog}</Text>
       </View>
 
-      <Text>Introverted:</Text>
+      <Text style={styles.texting}>Introverted:</Text>
       <Pressable
         onPress={() => {
           setIntrovertedValue(now => now + 1);
@@ -1329,7 +1330,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1338,7 +1339,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{Introvertedlog}</Text>
       </View>
 
-      <Text>NatureLover:</Text>
+      <Text style={styles.texting}>NatureLover:</Text>
       <Pressable
         onPress={() => {
           setNatureLoverValue(now => now + 1);
@@ -1352,7 +1353,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1361,7 +1362,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{NatureLoverlog}</Text>
       </View>
 
-      <Text>StarWarsFan:</Text>
+      <Text style={styles.texting}>StarWarsFan:</Text>
       <Pressable
         onPress={() => {
           setStarWarsFanValue(now => now + 1);
@@ -1375,7 +1376,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1384,7 +1385,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{StarWarsFanlog}</Text>
       </View>
 
-      <Text>ThrillSeeker:</Text>
+      <Text style={styles.texting}>ThrillSeeker:</Text>
       <Pressable
         onPress={() => {
           setThrillSeekerValue(now => now + 1);
@@ -1398,7 +1399,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1407,7 +1408,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{ThrillSeekerlog}</Text>
       </View>
 
-      <Text>BasketballFan:</Text>
+      <Text style={styles.texting}>BasketballFan:</Text>
       <Pressable
         onPress={() => {
           setBasketballFanValue(now => now + 1);
@@ -1421,7 +1422,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1430,7 +1431,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{BasketballFanlog}</Text>
       </View>
 
-      <Text>MorningPerson:</Text>
+      <Text style={styles.texting}>MorningPerson:</Text>
       <Pressable
         onPress={() => {
           setMorningPersonValue(now => now + 1);
@@ -1444,7 +1445,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1453,7 +1454,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{MorningPersonlog}</Text>
       </View>
 
-      <Text>CoffeeEnthusiast:</Text>
+      <Text style={styles.texting}>CoffeeEnthusiast:</Text>
       <Pressable
         onPress={() => {
           setCoffeeEnthusiastValue(now => now + 1);
@@ -1467,7 +1468,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1476,7 +1477,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{CoffeeEnthusiastlog}</Text>
       </View>
 
-      <Text>ClassicalMusicFan:</Text>
+      <Text style={styles.texting}>ClassicalMusicFan:</Text>
       <Pressable
         onPress={() => {
           setClassicalMusicFanValue(now => now + 1);
@@ -1490,7 +1491,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1499,7 +1500,7 @@ export default function EditProfileScreen() {
         <Text testID="pressable_press_consoe">{ClassicalMusicFanlog}</Text>
       </View>
 
-      <Text>StrangerThingsFan:</Text>
+      <Text style={styles.texting}>StrangerThingsFan:</Text>
       <Pressable
         onPress={() => {
           setStrangerThingsFanValue(now => now + 1);
@@ -1513,7 +1514,7 @@ export default function EditProfileScreen() {
         ]}>
         {({pressed}) => (
           <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'level of interest'}
+            {pressed ? 'Pressed!' : 'click to add tag'}
           </Text>
         )}
       </Pressable>
@@ -1527,23 +1528,38 @@ export default function EditProfileScreen() {
         onPress={() => Alert.alert('Your choices have been submitted.')}
       />
       <CustomButton text="Return to userScreen" onPress={OnUserPressed} />
+      
     </ScrollView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+texting:{
+    fontSize:15,
+    fontStyle:'italic',
+    fontWeight:'bold',
+    textAlign:'center',
+    color:'#000000'
+  },
   text: {
-    fontSize: 16,
+    fontSize: 17,
+    textAlign:'center',
+    fontStyle:'italic',
   },
   wrapperCustom: {
-    borderRadius: 8,
-    padding: 6,
+    borderRadius: 2,
+    padding: 3,
   },
   logBox: {
-    padding: 20,
-    margin: 10,
+    padding: 5,
+    margin: 15,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#f0f0f0',
-    backgroundColor: '#f9f9f9',
+    borderColor: 'red',
+    backgroundColor: 'pink',
   },
+  screen:{
+    width: '100%',
+    height:'100%',
+  }
 });
